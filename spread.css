@@ -1,0 +1,150 @@
+
+/* Map Page Bottom Tiles */
+
+.panel_layout {
+    width: 100%;
+    height: 30vw;
+    display: flex;
+    justify-content: center;
+    padding: 1vw;
+}
+.panel_layout>.jumbotron:nth-child(1) {
+    
+    background-color: #FFAE42;
+    background-size: cover;
+    height: 100%;
+    width: 40%;
+    overflow: auto;
+    border-radius: 10px; 
+    margin-left: 2px;
+    margin-right: 2px;
+    display: flex;
+    justify-content: center;
+    transition: 0.1s;
+    display: block;
+}
+.panel_layout>.jumbotron:nth-child(1):hover {
+    border-radius: 20px;
+}
+.panel_layout>.jumbotron:nth-child(2){
+    background-color: #FFAE42;
+    background-size: cover;
+    height: 100%;
+    width:40%;
+    margin-left: 2px;
+    margin-right: 2px;
+    border-radius: 10px; 
+    display: flex;
+    justify-content: center;
+    transition: 0.1s;
+    display: block;
+}
+.panel_layout>.jumbotron:nth-child(2):hover{
+    border-radius: 20px;
+}
+.panel_layout>.jumbotron:nth-child(3){
+    background-color: #FFAE42;
+    background-size: cover;
+    height: 100%;
+    width:40%;
+    margin-left: 2px;
+    margin-right: 2px;
+    border-radius: 10px; 
+    display: flex;
+    justify-content: center;
+    transition: 0.1s;
+    display: block;
+}
+.panel_layout>.jumbotron:nth-child(3):hover{
+    border-radius: 20px;
+}
+
+
+
+
+
+
+
+
+/* Pie chart for PIS. Implemented Later */
+.pie {
+    width: 100px; height: 100px;
+    border-radius: 50%;
+    background: yellowgreen;
+}
+
+@keyframes spin {
+    to { transform: rotate(.5turn); }
+}
+  
+@keyframes bg {
+    50% { background: #655; }
+}
+
+.pie::before {
+    content: ’;
+    display: block;
+    margin-left: 50%;
+    height: 100%;
+    border-radius: 0 100% 100% 0 / 50%;
+    background-color: inherit;
+    transform-origin: left;
+    animation: spin 3s linear infinite,
+    bg 6s step-end infinite;
+}
+
+
+
+
+/* List */
+
+ul, ol{
+    margin: 0;padding: 0;
+    list-style: none;
+}
+li {
+    background: #37BC9B;
+    color: #fff;                                                                                       
+    margin-bottom: 1vw;
+    margin-top: 1vw;
+    padding: 13px;
+    position: relative;
+    border-radius:  10px;
+    font-size: 1vw;
+    font-family: Roboto;
+}
+li:hover {
+    background: rgb(142, 170, 163);
+}
+
+
+
+
+
+
+
+/* custom scrollbar */
+
+.jumbotron::-webkit-scrollbar {
+    width: 0.5vw;
+}
+ 
+.jumbotron::-webkit-scrollbar-track {
+    -webkit-box-shadow: 0; 
+    box-shadow: unset;
+    margin-top: 1vw;
+    margin-bottom: 1vw;
+}
+ 
+.jumbotron::-webkit-scrollbar-thumb {
+  background-color: rgb(214, 104, 104);
+  outline: 1px solid slategrey;
+  border-radius: 20px;
+}
+
+.jumbotron::-webkit-scrollbar-thumb:hover {
+    background-color: rgb(163, 28, 28);
+    outline: 1px solid slategrey;
+    border-radius: 20px;
+  }
+
