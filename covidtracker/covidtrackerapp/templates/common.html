@@ -1,0 +1,33 @@
+<head>
+  {%load static%}
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{%block title%}{%endblock%}</title>
+    <link rel= "stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel= "stylesheet" href="{%static "css/base.css"%}">
+    <link rel= "stylesheet" href="{%static "css/home.css"%}">
+    <link rel = "stylesheet" href = "{%static "css/profile-creation.css"%}">
+    <script src="{%static "js/main.js"%}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <div class="logo-image">
+            <img class="img-fluid">
+    </div>
+    {%if navVis%}
+    <div class="topnav">
+        <a onclick = 'redirect("/home")' id = 'home-btn'>Home</a>
+        <a id = 'about-btn' onclick = 'redirect("/about")'>About</a>
+        {%if login != 0%}
+        <a onclick = 'redirect("/profile")' id = 'profile-nav-btn'>Profile</a>
+        {%if auth == True%}
+        <a id = 'tracker-nav-btn' onclick = 'redirect("/tracker")'>Tracker</a>
+        {%endif%}
+        <a id = 'logout-btn' onclick = 'redirect("/logout")'>Logout</a>
+        {%endif%}
+    </div>
+    {%endif%}
+</head>
+{%block content%}
+{%endblock%}

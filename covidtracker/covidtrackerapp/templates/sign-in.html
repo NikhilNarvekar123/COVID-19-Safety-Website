@@ -1,0 +1,26 @@
+{%extends 'common.html'%}
+{%block title%}Sign In | Safe From COVID{%endblock%}
+{%block content%}
+<body>
+  <script type = 'text/javascript'>
+    var alertMsg = "{{alert}}";
+    if(alertMsg.length > 0){
+      alert(alertMsg);
+    }
+  </script>
+<div class = "panel_layout">
+
+          <div class = "jumbotron">
+              <h2></h2>
+              <form name = 'input' method = 'post'>
+                {%csrf_token%}
+                  <p style= "font-size: 1.3vw;">Enter Email Address:</p>
+                  <input type="text" id="address" name = 'address' placeholder="Enter Email">
+                  <p style= "font-size: 1.3vw;">Enter Password:</p>
+                  <input type="password" id="password1" name = 'password' placeholder="Enter Password"><br>
+                  <button onclick = 'document.input.submit()'> Sign In </button>
+              </form>
+          </div>
+</div>
+</body>
+{%endblock%}

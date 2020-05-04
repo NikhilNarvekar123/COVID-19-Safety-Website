@@ -1,0 +1,48 @@
+{%extends 'common.html'%}
+{%block title%}Home | Safe From COVID{%endblock%}
+
+{%block content%}
+<body onload="document.getElementById('home-btn').className = 'active'">
+    <!-- intro -->
+    <div class = "container" >
+        <div class = "jumbotron">
+            <h2>safefromcovid.com</h2>
+            <p style= "font-size: 1.3vw;">This website has been created as a helpful portal during
+            the COVID-19 global pandemic. By making a profile (below), you can use our spread-tracker
+            feature and see whether you have come in close contact with anyone infected with COVID-19. You can
+            also find what restaurants/shops are open in your area, as well as find help on how to stay safe
+            and occupied at home. </p>
+        </div>
+    </div>
+
+    <!-- buttons for sign in -->
+    {%if login == 0%}
+    <div class = "button_layout">
+        <button id = 'create-profile-btn' onclick='redirect("/create-profile")'>Create a Profile</button>
+        <button id = 'sign-in-btn' onclick='redirect("/sign-in")'>Sign In</button>
+    </div>
+    {%else%}
+      <div class = 'container'>
+        <h1 id = 'greeting'>Welcome, User</h1>
+      </div>
+          {%if auth == False%}
+          <div class = 'container'>
+          <h2>Please verify your account before using contact tracing</h2>
+          </div>
+          {%endif%}
+    {%endif%}
+    <!-- home tiles -->
+    <div class = "panel_layout">
+
+           <div class = "jumbotron" onclick="activityNav()">
+               <h2>Find Activities to do while in quarantine →</h2>
+           </div>
+
+           <div class = "jumbotron" onclick="safetyNav()">
+               <h2>Stay safe from the virus →</h2>
+           </div>
+
+    </div>
+
+</body>
+{%endblock%}

@@ -1,0 +1,27 @@
+{%extends 'common.html'%}
+
+{%block title%}Tracker | Safe from COVID{%endblock%}
+
+{%block content%}
+<body onload = "document.getElementById('tracker-nav-btn').className = 'active'">
+
+    <div class = "static" align = 'center'>
+        <div class = "container" >
+            <div class = "jumbotron">
+                <h2>Are you at risk?</h2>
+                <br>
+                <p style= "font-size: 1vw; padding-bottom: 0.2vw;">
+                <strong>NOTE: If you have not done so, please click the "About" button above to read more before using the tracker.</strong>
+                </p>
+                  <br>
+                <p style= "font-size: 1.3vw;">Using GPS data, our tracking feature monitors your location and finds out whether you have been
+                    in contact with a person feeling ill or tested positive with COVID-19. If a contact has occurred, the system will notify
+                    you through the email you provided.
+                </p>
+            </div>
+        </div>
+        <button onclick = 'toggleTracker()' id = 'track-btn'>START TRACKING</button>
+
+</div>
+</body>
+{%endblock%}
