@@ -1,16 +1,16 @@
 from django.shortcuts import render, redirect, HttpResponse
 from django.template import RequestContext
 from django.contrib.auth import hashers
-import pyrebase, math, time, smtplib
+import pyrebase, math, time, smtplib, os
 
 firebaseConfig = {
-    'apiKey': "AIzaSyAWFTpdWykYSeXZJWUEBb26S69f0WYm2nQ",
-    'authDomain': "coronaaware-71b77.firebaseapp.com",
-    'databaseURL': "https://coronaaware-71b77.firebaseio.com",
-    'projectId': "coronaaware-71b77",
-    'storageBucket': "coronaaware-71b77.appspot.com",
+    'apiKey': os.environ['API-KEY'],
+    'authDomain': os.environ['PROJECT-NAME'] + '.firebaseapp.com',
+    'databaseURL': "https://" + os.environ['PROJECT-NAME'] + "firebaseio.com",
+    'projectId': os.environ['PROJECT-NAME'],
+    'storageBucket': os.environ['PROJECT-NAME'] + ".appspot.com",
     'messagingSenderId': "38215757364",
-    'appId': "1:38215757364:web:8762c29d5086e8c08e2461"
+    'appId': os.environ['APP-ID']
  }
 
 fb = pyrebase.initialize_app(firebaseConfig)
@@ -145,7 +145,8 @@ def newProf(request):
                     resp = redirect('home')
 
                     request.session['login'] = auth.current_user['localId']
-                    request.session['verified'] = 1
+                    request.session['authtoken'] = auth.current_user['idToken']
+                    request.session['verified'] = 0
                     db.child(auth.current_user['localId']).set(acct)
                     return resp
                 except:
@@ -173,7 +174,7 @@ def signIn(request):
             resp = redirect('home')
 
             request.session['login'] = auth.current_user['localId']
-            request.session['verified'] = 1#int(auth.get_account_info(auth.current_user['idToken'])['users'][0]['emailVerified'] == True)
+            request.session['verified'] = int(auth.get_account_info(auth.current_user['idToken'])['users'][0]['emailVerified'] == True)
             return resp
         except Exception as e:
             print(e)
@@ -287,7 +288,7 @@ def email(message, to):
     server.ehlo()
     server.starttls()
     server.ehlo()
-    server.login('coronaaware@gmail.com', 'covidtracker20')
+    server.login('coronaaware@gmail.com', os.environ['EMAIL-PASS'])
     print(to)
     server.sendmail('coronaaware@gmail.com', to, message)
 
@@ -312,8 +313,9 @@ def getLoginInfo(request):
 
 def checkValidLogin(token):
     try:
-        if(db.child(token).get().val() == None):
+        if(db.child(token).get(request.session['authtoken']).val() == None):
             return False
-    except:
+    except Exception as e:
+        print(e)
         return False
     return True
