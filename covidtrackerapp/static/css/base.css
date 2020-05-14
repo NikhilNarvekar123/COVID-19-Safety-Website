@@ -27,11 +27,13 @@ body {
    @ make paragraphs flexible
    @ make paragraphs size adjustable in CSS
 */
+
 p {
     color: #ffffff;
     font-family: 'Roboto', sans-serif;
     display: flex;
 }
+
 t {
   color: #dddddd;
   font-family: 'Roboto', sans-serif;
@@ -40,7 +42,7 @@ t {
 h1 {
     color: #ffffff;
     font-family: 'Roboto', sans-serif;
-    font-size: 3vw;
+    font-size: calc(20px + (35 - 20) * ((100vw - 400px) / (1600 - 400)));
     font-weight: bold;
     text-align: center;
     margin-bottom: 50px;
@@ -48,7 +50,7 @@ h1 {
 h2 {
     color: #ffffff;
     font-family: 'Roboto', sans-serif;
-    font-size: 1.6vw;
+    font-size: calc(14px + (20 - 14) * ((100vw - 400px) / (1600 - 400)));
     text-align: center;
     font-weight: bold;
 }
@@ -59,12 +61,12 @@ button {
     border: none;
     color:  #FFFFFF;
     font-family: "Roboto", sans-serif;
-    width: 10vw;
-    height: 4vw;
+    width: calc(100px + (136 - 100) * ((100vw - 400px) / (1600 - 400)));
+    height: calc(30px + (55 - 30) * ((100vw - 400px) / (1600 - 400)));
     margin-left: 2vw;
     margin-right: 2vw;
     transition: 0.4s;
-    font-size: 1vw;
+    font-size: calc(10px + (15 - 10) * ((100vw - 400px) / (1600 - 400)));
 }
 
 button:hover {
@@ -114,7 +116,7 @@ button:hover {
     padding-top: 0.7vw;
     padding-bottom: 0.7vw;
     text-decoration: none;
-    font-size: 1vw;
+    font-size: calc(10px + (15 - 10) * ((100vw - 400px) / (1600 - 400)));
 }
 .topnav a:hover {
     background-color: #ddd;
