@@ -1,35 +1,72 @@
-{%extends 'common.html'%}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- {%load static%} -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- <title>{%block title%}{%endblock%}</title> -->
+    <link rel= "stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- <link rel= "stylesheet" href="{%static "css/base.css"%}">
+    <link rel= "stylesheet" href="{%static "css/home.css"%}"> -->
+    <link rel= "stylesheet" href="base.css">
+    <link rel= "stylesheet" href="home.css">
+    <!-- <link rel = "stylesheet" href = "{%static "css/profile-creation.css"%}"> -->
+    <!-- <script src="{%static "js/main.js"%}"></script> -->
+    <script src="main.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <!-- {%if navVis%} -->
+    <div class="topnav">
+        <a onclick = 'redirect("/home")' id = 'home-btn'>Home</a>
+        <a id = 'about-btn' onclick = 'redirect("/about")'>About</a>
+        <!-- {%if login != 0%} -->
+        <a onclick = 'redirect("/profile")' id = 'profile-nav-btn'>Profile</a>
+        <!-- {%if auth == True%} -->
+        <a id = 'tracker-nav-btn' onclick = 'redirect("/tracker")'>Tracker</a>
+        <!-- {%endif%} -->
+        <a id = 'logout-btn' onclick = 'redirect("/logout")'>Logout</a>
+        <!-- {%endif%} -->
+    </div>
+    <!-- {%endif%} -->
+</head>
+
+<!-- {%extends 'common.html'%}
 {%block title%}About | Safe from COVID{%endblock%}
-{%block content%}
+{%block content%} -->
+
 <body onload = 'document.getElementById("about-btn").className = "active"'>
 
   <div class="container">
+
     <div class = "jumbotron">
+
       <h2>Site Information</h2>
 
-      <p style= "font-size: 1.3vw; padding-bottom: 0.2vw;">
+      <p style= "font-size: calc(12px + (17 - 12) * ((100vw - 400px) / (1600 - 400)));">
         This site was made as an early-warning system to inform users if they have been in contact
         with someone feeling ill or tested positive for COVID-19. We offer a tracking feature that
         uses GPS data from a users' devices to determine which users have come in close contact with eachother.
         Once a user claims they are unwell or positive, other users who have been in close contact with them are notified
         via email.
       </p>
+
       <br>
-      <p style= "font-size: 1.3vw; padding-bottom: 0.2vw;">
-      <strong>FEATURES (v1.1):</strong>
-      </p>
-      <br>
-      <p style= "font-size: 1vw; padding-bottom: 0.2vw;">
-      PROFILE: View your account details and history of close contacts. You are also provided with options to update
-      your health status (sick/positive for COVID-19)
-      </p>
-      <br>
-      <p style= "font-size: 1vw; padding-bottom: 0.2vw;">
-      TRACKER: Once you have logged in and verified your email, you can use the tracker to monitor your location and record close contacts with other users in the area.
-      If a user you have come in close contact with claims they are sick/positive, you will receive an email notification with that individual's email and location of contact.
+      <h2>Features (V1.1)</h2>
+
+      <p style= "font-size: calc(12px + (17 - 12) * ((100vw - 400px) / (1600 - 400)));">
+        PROFILE: View your account details and history of close contacts. You are also provided with options to update
+        your health status (sick/positive for COVID-19)
       </p>
 
-      <p style= "font-size: 1.3vw; padding-bottom: 1vw;">
+      <p style= "font-size: calc(12px + (17 - 12) * ((100vw - 400px) / (1600 - 400)));">
+        TRACKER: Once you have logged in and verified your email, you can use the tracker to monitor your location and record close contacts with other users in the area.
+        If a user you have come in close contact with claims they are sick/positive, you will receive an email notification with that individual's email and location of contact.
+      </p>
+
+      <p style= "font-size: calc(12px + (17 - 12) * ((100vw - 400px) / (1600 - 400)));">
         There are many factors involved in the spread of the disease,
         and due to given inaccuracy of GPS location data it is possible that you haven't actually come into
         contact with a high-risk/positive individual even when the service informs you so. We collect and verify user emails in order to provide
@@ -37,12 +74,15 @@
         This increases accountability and minimizes the likelihood of abuse.
       </p>
 
-      <p style= "font-size: 1.3vw; padding-bottom: 0.2vw;">
-        <strong>DISCLAIMER: ALL USER DATA IS KEPT PRIVATE AND ENCRYPTED. THIS SERVICE SHOULD NOT BE USED AS A DIAGNOSTIC TOOL.</strong>
-      </p>
+      <br>
+      <br>
+      <h2>DISCLAIMER: ALL USER DATA IS KEPT PRIVATE AND ENCRYPTED. THIS SERVICE SHOULD NOT BE USED AS A DIAGNOSTIC TOOL.</h2>
+      <br>
+      <br>
 
     </div>
+
   </div>
 
 </body>
-{%endblock%}
+<!-- {%endblock%} -->

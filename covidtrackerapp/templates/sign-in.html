@@ -1,26 +1,72 @@
-{%extends 'common.html'%}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- {%load static%} -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- <title>{%block title%}{%endblock%}</title> -->
+    <link rel= "stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- <link rel= "stylesheet" href="{%static "css/base.css"%}">
+    <link rel= "stylesheet" href="{%static "css/home.css"%}"> -->
+    <link rel= "stylesheet" href="base.css">
+    <link rel= "stylesheet" href="profile-creation.css">
+    <!-- <link rel = "stylesheet" href = "{%static "css/profile-creation.css"%}"> -->
+    <!-- <script src="{%static "js/main.js"%}"></script> -->
+    <script src="main.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <!-- {%if navVis%} -->
+    <div class="topnav">
+        <a onclick = 'redirect("/home")' id = 'home-btn'>Home</a>
+        <a id = 'about-btn' onclick = 'redirect("/about")'>About</a>
+        <!-- {%if login != 0%} -->
+        <a onclick = 'redirect("/profile")' id = 'profile-nav-btn'>Profile</a>
+        <!-- {%if auth == True%} -->
+        <a id = 'tracker-nav-btn' onclick = 'redirect("/tracker")'>Tracker</a>
+        <!-- {%endif%} -->
+        <a id = 'logout-btn' onclick = 'redirect("/logout")'>Logout</a>
+        <!-- {%endif%} -->
+    </div>
+    <!-- {%endif%} -->
+</head>
+
+
+<!-- {%extends 'common.html'%}
 {%block title%}Sign In | Safe From COVID{%endblock%}
-{%block content%}
+{%block content%} -->
+
+
 <body>
+
+  <!-- Disable for now but this prevents the page from loading
+    not sure if that's what u need to do but u can use the html
+    alert element ive made  -->
+
+  <!--
   <script type = 'text/javascript'>
     var alertMsg = "{{alert}}";
     if(alertMsg.length > 0){
       alert(alertMsg);
     }
-  </script>
-<div class = "panel_layout">
+  </script> -->
 
-          <div class = "jumbotron">
-              <h2></h2>
-              <form name = 'input' method = 'post'>
-                {%csrf_token%}
-                  <p style= "font-size: 1.3vw;">Enter Email Address:</p>
-                  <input type="text" id="address" name = 'address' placeholder="Enter Email">
-                  <p style= "font-size: 1.3vw;">Enter Password:</p>
-                  <input type="password" id="password1" name = 'password' placeholder="Enter Password"><br>
-                  <button onclick = 'document.input.submit()'> Sign In </button>
-              </form>
-          </div>
-</div>
+  <h2>Sign In</h2>
+
+  <div class = "panel_layout">
+      <div class = "jumbotron">
+          <form name = 'input' method = 'post'>
+              <!-- {%csrf_token%} -->
+              <p style= "font-size: calc(12px + (17 - 12) * ((100vw - 400px) / (1600 - 400)));">Enter Email Address:</p>
+              <input type="text" id="address" name = 'address' placeholder="Enter Email">
+              <p style= "font-size: calc(12px + (17 - 12) * ((100vw - 400px) / (1600 - 400)));">Enter Password:</p>
+              <input type="password" id="password1" name = 'password' placeholder="Enter Password"><br>
+              <button onclick = 'document.input.submit()'> Login </button>
+          </form>
+      </div>
+    </div>
+
 </body>
-{%endblock%}
+<!-- {%endblock%} -->

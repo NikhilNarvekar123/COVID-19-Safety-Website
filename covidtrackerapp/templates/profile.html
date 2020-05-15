@@ -1,31 +1,86 @@
-{%extends 'common.html'%}
-{%block title%}Profile | Safe From COVID{%endblock%}
+<!DOCTYPE html>
+<html lang="en">
 
-{%block content%}
+<head>
+  <!-- {%load static%} -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- <title>{%block title%}{%endblock%}</title> -->
+    <link rel= "stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- <link rel= "stylesheet" href="{%static "css/base.css"%}">
+    <link rel= "stylesheet" href="{%static "css/home.css"%}"> -->
+    <link rel= "stylesheet" href="base.css">
+    <link rel="stylesheet" href="profile-creation.css">
+    <!-- <link rel = "stylesheet" href = "{%static "css/profile-creation.css"%}"> -->
+    <!-- <script src="{%static "js/main.js"%}"></script> -->
+    <script src="main.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <!-- {%if navVis%} -->
+    <div class="topnav">
+        <a onclick = 'redirect("/home")' id = 'home-btn'>Home</a>
+        <a id = 'about-btn' onclick = 'redirect("/about")'>About</a>
+        <!-- {%if login != 0%} -->
+        <a onclick = 'redirect("/profile")' id = 'profile-nav-btn'>Profile</a>
+        <!-- {%if auth == True%} -->
+        <a id = 'tracker-nav-btn' onclick = 'redirect("/tracker")'>Tracker</a>
+        <!-- {%endif%} -->
+        <a id = 'logout-btn' onclick = 'redirect("/logout")'>Logout</a>
+        <!-- {%endif%} -->
+    </div>
+    <!-- {%endif%} -->
+
+</head>
+
+
+<!-- {%extends 'common.html'%}
+{%block title%}Profile | Safe From COVID{%endblock%}
+{%block content%} -->
+
 <body onload = "document.getElementById('profile-nav-btn').className = 'active'; fillList({{contacted}}, {{contacthealth}}); setDeclareOptions('{{sick}}', '{{positive}}');">
 
+  <h1>Profile</h1>
+
   <div class="container">
+
     <div class = "jumbotron">
-      <h2>Profile</h2>
 
-      <p style= "font-size: 1.3vw; padding-bottom: 0.2vw;">
-        Your Email: {{email}}
-      </p>
-      {%if auth == 0%}
-      <t style = 'color:red'>Please check your inbox for a verification email. Your email must be verified before using contact tracing</t>
-      {%endif%}
-      <strong style = "color:white; margin-left:2vw">Let others you came in contact with be aware of your health status:</strong><br><br>
-      <strong id = 'warning' style = "color:red; margin-left:2vw; visibility:hidden;"> </strong><br>
-      <form method = 'post' name = 'update-status' onsubmit = 'return checkSubmit()'>
-      {%csrf_token%}
-      <button name = 'sick-btn' style = "background-color:red; color:white; width:25vw; visibility:hidden" id = 'left-action-btn' onclick = 'handleClaim("left")'>I'M SICK</button>
-      <button name = 'positive-btn' style = 'background-color:red; color:white; width:25vw; ' id = 'right-action-btn' onclick = 'handleClaim("right")'>I HAVE TESTED POSITIVE FOR COVID-19</button>
-      </form>
+        <p style= "font-size: calc(12px + (17 - 12) * ((100vw - 400px) / (1600 - 400)));">
+            Your Email: {{email}}
+        </p>
 
-      <h3 style = 'color:white'>History of contact with other users:</h3>
-      <ul id = 'contact-list'>
-      </ul>
-  </div>
+        <!-- {%if auth == 0%} -->
+        <t style = 'color:red; font-size: calc(12px + (17 - 12) * ((100vw - 400px) / (1600 - 400)));'>Please check your inbox for a verification email. Your email must be verified before using contact tracing</t>
+
+        <!-- {%endif%} -->
+        <!-- i have no fkin idea wtf this next element is supposed to be LMAO but its messing up the formatting  -->
+        <!-- <strong style = "color:white; margin-left:2vw">Let others you came in contact with be aware of your health status:</strong><br><br> -->
+        <!-- <strong id = 'warning' style = "color:red; margin-left:2vw; visibility:hidden;"> </strong><br> -->
+
+
+
+        <br><br><br>
+        <!-- The forms aren't made for handling multiple normal buttons you have to use submit-type buttons (also i made the other btn
+             visible for testing purposes u can change it back when ur done) okk also theres a problem in scaling the submit btns ill fix later
+        -->
+        <div class = "container" align = 'center'>
+          <form method = 'post' name = 'update-status' onsubmit = 'return checkSubmit()' style = "width: 50%">
+              <!-- {%csrf_token%} -->
+              <ul>
+                <input type="submit" name = 'sick-btn' value="I'M SICK"  id = 'left-action-btn' style="visibility: visible" onclick = 'handleClaim("left")'>
+                <input type="submit" name = 'positive-btn' value="I HAVE TESTED POSITIVE FOR COVID-19" id = 'right-action-btn' onclick = 'handleClaim("right")'>
+              </ul>
+          </form>
+        </div>
+
+        <br><br><br>
+        <h2>History of contact with other users:</h2>
+        <ul id = 'contact-list'>
+        </ul>
+
+    </div>
 
 </body>
-{%endblock%}
+<!-- {%endblock%} -->
