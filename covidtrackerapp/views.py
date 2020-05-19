@@ -3,6 +3,8 @@ from django.template import RequestContext
 from django.contrib.auth import hashers
 import pyrebase, math, time, smtplib
 
+from dotenv import load_dotenv
+
 firebaseConfig = {
     'apiKey': "AIzaSyAWFTpdWykYSeXZJWUEBb26S69f0WYm2nQ",
     'authDomain': "coronaaware-71b77.firebaseapp.com",
@@ -16,6 +18,8 @@ firebaseConfig = {
 fb = pyrebase.initialize_app(firebaseConfig)
 auth = fb.auth()
 db = fb.database()
+
+load_dotenv()
 
 def home(request):
     context = {'login' : 0, 'navVis' : True, 'auth' : False}

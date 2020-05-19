@@ -5,8 +5,8 @@ var submit = false;
 
 var submitName;
 
-var rBtnState = 'I HAVE TESTED POSITIVE FOR COVID-19+background-color:red; color:white; width:25vw';
-var lBtnState = "I'M SICK+background-color:red; color:white; width:25vw";
+var rBtnState = 'I HAVE TESTED POSITIVE FOR COVID-19+background-color:red; color:white; width: inherit; height:6vw; font-size:12px;';
+var lBtnState = "I'M SICK+background-color:red; color:white; width: inherit; height:6vw; font-size:12px;";
 
 var sickcheck = false;
 var positivecheck = false;
@@ -95,27 +95,28 @@ function setDeclareOptions(sick, positive){
 
 
       if(Date.now()/1000 - parseInt(data[1]) > 1728000){
-        rBtnState = "I NO LONGER CARRY COVID-19" + "+" + rBtnState;
-        document.getElementById('right-action-btn').innerHTML = rBtnState.split("+")[0];
+        rBtnState = "I NO LONGER CARRY COVID-19" + "+" + rBtnState.split("+")[1];
+        document.getElementById('right-action-btn').value = rBtnState.split("+")[0];
       } else {
-        rBtnState = "YOU'VE TESTED POSITIVE FOR COVID-19! WAIT " + timeNotation(1728000 - (Date.now()/1000 - parseInt(data[1]))) + " TO UPDATE YOUR STATUS" + "+" + 'background-color:transparent; color:red; width:30vw; border-style:solid; border-color:red;';
+        rBtnState = "YOU'VE TESTED POSITIVE FOR COVID-19! WAIT " + timeNotation(1728000 - (Date.now()/1000 - parseInt(data[1]))) + " TO UPDATE YOUR STATUS" + "+" + 'background-color:transparent; border-style:solid; border-color:red; color:red; width: inherit;  height:6vw; font-size:12px;';
         document.getElementById('right-action-btn').style = rBtnState.split("+")[1];
-        document.getElementById('right-action-btn').innerHTML = rBtnState.split("+")[0];
+        document.getElementById('right-action-btn').value = rBtnState.split("+")[0];
       }
       return;
   }
   document.getElementById('left-action-btn').style.visibility = 'visible';
   data = sick.split("+");
+
   if(data[0] == '1'){
     sickcheck = true;
 
     if(Date.now()/1000 - parseInt(data[1]) > 432000){
-      lBtnState = "I'M NO LONGER SICK" + "+" + lBtnState;
-      document.getElementById('left-action-btn').innerHTML = lBtnState.split("+")[0];
+      lBtnState = "I'M NO LONGER SICK" + "+" + lBtnState.split("+")[1];
+      document.getElementById('left-action-btn').value = lBtnState.split("+")[0];
     } else {
-      lBtnState = 'YOU ARE SICK! WAIT ' + timeNotation(432000 - (Date.now()/1000 - parseInt(data[1]))) + ' TO UPDATE YOUR STATUS' + "+" + 'background-color:transparent; color:red; width:30vw; border-style:solid; border-color:red;';
+      lBtnState = 'YOU ARE SICK! WAIT ' + timeNotation(432000 - (Date.now()/1000 - parseInt(data[1]))) + ' TO UPDATE YOUR STATUS' + "+" + 'background-color:transparent;  border-style:solid; border-color:red; color:red; width:inherit; height:6vw; font-size:12px;';
       document.getElementById('left-action-btn').style = lBtnState.split("+")[1];
-      document.getElementById('left-action-btn').innerHTML = lBtnState.split("+")[0];
+      document.getElementById('left-action-btn').value = lBtnState.split("+")[0];
     }
   }
 }
@@ -153,6 +154,7 @@ function timeNotation(time){
 
 function fillList(contacted, health){
   var elements = [];
+  console.log(contacted);
   for(var idx = 0; idx < contacted.length; idx++){
     if(contacted[idx] == '0'){
       continue;
@@ -198,14 +200,14 @@ function fillList(contacted, health){
 function handleClaim(btn){
 
   if(btn == 'right'){
-    if(document.getElementById('right-action-btn').innerHTML == 'CANCEL'){
+    if(document.getElementById('right-action-btn').value == 'CANCEL'){
 
       document.getElementById('warning').style.visibility = 'hidden';
       document.getElementById('right-action-btn').style = rBtnState.split("+")[1];
-      document.getElementById('right-action-btn').innerHTML = rBtnState.split("+")[0];
+      document.getElementById('right-action-btn').value = rBtnState.split("+")[0];
 
       document.getElementById('left-action-btn').style = lBtnState.split("+")[1];
-      document.getElementById('left-action-btn').innerHTML = lBtnState.split("+")[0];
+      document.getElementById('left-action-btn').value = lBtnState.split("+")[0];
     } else {
 
       submitName = 'positive'
@@ -218,7 +220,7 @@ function handleClaim(btn){
     }
   } else {
 
-    if(document.getElementById('left-action-btn').innerHTML == 'CONFIRM'){
+    if(document.getElementById('left-action-btn').value == 'CONFIRM'){
       submit = true;
     } else {
       submitName = 'sick';
@@ -237,10 +239,10 @@ function promptConfirm(duration){
   document.getElementById('warning').innerHTML = 'Are you sure? Users who came in contact with you will be notified with your health update and email. You will not be able to update your status for ' + duration + ' days';
   document.getElementById('warning').style.visibility = 'visible';
   document.getElementById('left-action-btn').name = submitName;
-  document.getElementById('right-action-btn').style = "background-color:red; color:white; width:15vw";
-  document.getElementById('right-action-btn').innerHTML = "CANCEL";
-  document.getElementById('left-action-btn').style = "background-color:red; color:white; width:15vw";
-  document.getElementById('left-action-btn').innerHTML = "CONFIRM";
+  document.getElementById('right-action-btn').style = "background-color:red; color:white; width: inherit; height:6vw; font-size:12px;";
+  document.getElementById('right-action-btn').value = "CANCEL";
+  document.getElementById('left-action-btn').style = "background-color:red; color:white; width: inherit; height:6vw; font-size:12px;";
+  document.getElementById('left-action-btn').value = "CONFIRM";
 }
 
 function checkSubmit(){

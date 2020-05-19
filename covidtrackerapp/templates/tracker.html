@@ -1,27 +1,53 @@
-{%extends 'common.html'%}
+<head>
+  {%load static%}
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Home | Safe from COVID</title>
+    <link rel= "stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
-{%block title%}Tracker | Safe from COVID{%endblock%}
+    <link rel= "stylesheet" href="{%static "css/base.css"%}">
 
-{%block content%}
+    <script src="{%static "js/main.js"%}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    {%if navVis%}
+    <div class="topnav">
+        <a onclick = 'redirect("/home")' id = 'home-btn'>Home</a>
+        <a id = 'about-btn' onclick = 'redirect("/about")'>About</a>
+        {%if login != 0%}
+        <a onclick = 'redirect("/profile")' id = 'profile-nav-btn'>Profile</a>
+        {%if auth == True%}
+        <a id = 'tracker-nav-btn' onclick = 'redirect("/tracker")'>Tracker</a>
+        {%endif%}
+        <a id = 'logout-btn' onclick = 'redirect("/logout")'>Logout</a>
+        {%endif%}
+    </div>
+    {%endif%}
+</head>
+
 <body onload = "document.getElementById('tracker-nav-btn').className = 'active'">
 
     <div class = "static" align = 'center'>
-        <div class = "container" >
+
+        <div class = "container" align = 'left'>
             <div class = "jumbotron">
-                <h2>Are you at risk?</h2>
-                <br>
-                <p style= "font-size: 1vw; padding-bottom: 0.2vw;">
-                <strong>NOTE: If you have not done so, please click the "About" button above to read more before using the tracker.</strong>
+                <h2>Are you at risk?</h2><br>
+                <p style= "font-size: calc(12px + (17 - 12) * ((100vw - 400px) / (1600 - 400)));">
+                    NOTE: If you have not done so, please click the "About" button above to read more before using the tracker.
                 </p>
-                  <br>
-                <p style= "font-size: 1.3vw;">Using GPS data, our tracking feature monitors your location and finds out whether you have been
+                <p style= "font-size: calc(12px + (17 - 12) * ((100vw - 400px) / (1600 - 400)));">
+                    Using GPS data, our tracking feature monitors your location and finds out whether you have been
                     in contact with a person feeling ill or tested positive with COVID-19. If a contact has occurred, the system will notify
                     you through the email you provided.
                 </p>
             </div>
         </div>
-        <button onclick = 'toggleTracker()' id = 'track-btn'>START TRACKING</button>
 
-</div>
+        <div class = "button_layout">
+          <button onclick = 'toggleTracker()' id = 'track-btn'>START TRACKING</button>
+        </div>
+      </div>
+
 </body>
-{%endblock%}
