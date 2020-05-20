@@ -17,8 +17,6 @@ fb = pyrebase.initialize_app(firebaseConfig)
 auth = fb.auth()
 db = fb.database()
 
-load_dotenv()
-
 def home(request):
     context = {'login' : 0, 'navVis' : True, 'auth' : False}
 
