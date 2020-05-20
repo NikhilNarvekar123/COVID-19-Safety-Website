@@ -17,6 +17,8 @@ fb = pyrebase.initialize_app(firebaseConfig)
 auth = fb.auth()
 db = fb.database()
 
+load_dotenv()
+
 def home(request):
     context = {'login' : 0, 'navVis' : True, 'auth' : False}
 
@@ -63,7 +65,7 @@ def profile(request):
                         message = 'Hello, this is a message from safefromcovid.com. A user you were in contact with recently claims that they are feeling ill. Visit your profile at safefromcovid.com to learn more'
                         message += "\nEmail of other user: " + db.child(request.session['login']).child('email').get().val() + "\nLocation of contact: https://www.google.com/maps/place/" + contactmap[k].split("+")[0] + "," + contactmap[k].split("+")[1]
                         email(message, db.child(k).child('email').get().val())
-                        contactInfo(contacted, contactHealth, contactmap, k)
+                        contactInfo(contacted, contactHealth, contactmap, k, request)
                         db.child(request.session['login']).child('contacted').child(k).set(contactmap[k][0:len(contactmap[k]) - 2] + '+1')
             else:
                 if(time.time() - float(data[1]) > 432000):
@@ -83,7 +85,7 @@ def profile(request):
                         message = 'Hello, this is a message from safefromcovid.com. A user you were in contact with recently claims that they have tested positive for COVID-19. Visit your profile at safefromcovid.com to learn more'
                         message += "\nEmail of other user: " + db.child(request.session['login']).child('email').get().val() + "\nLocation of contact: https://www.google.com/maps/place/" + contactmap[k].split("+")[0] + "," + contactmap[k].split("+")[1]
                         email(message, db.child(k).child('email').get().val())
-                        contactInfo(contacted, contactHealth, contactmap, k)
+                        contactInfo(contacted, contactHealth, contactmap, k, request)
                         db.child(request.session['login']).child('contacted').child(k).set(contactmap[k][0:len(contactmap[k]) - 2] + '+2')
 
             else:
@@ -98,7 +100,7 @@ def profile(request):
         for k in contactmap:
             if(k == 'a'):
                 continue
-            contactInfo(contacted, contactHealth, contactmap, k)
+            contactInfo(contacted, contactHealth, contactmap, k, request)
 
     context['contacted'] = contacted
     context['contacthealth'] = contactHealth
@@ -109,7 +111,7 @@ def profile(request):
 
     return render(request, 'profile.html', context)
 
-def contactInfo(contacted, contactHealth, contactmap, k):
+def contactInfo(contacted, contactHealth, contactmap, k, request):
     timedif = time.time() - float((contactmap[k].split("+"))[2])
     if(timedif/3600 > 360):
         db.child(request.session['login']).child('contacted').child(k).remove()
