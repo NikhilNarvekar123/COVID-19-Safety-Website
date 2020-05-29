@@ -42,11 +42,13 @@ def profile(request):
     else:
         context['login'] = 1
 
-    contacted = None
-    contactHealth = None
+    contacted = []
+    contactHealth = []
     contactmap = db.child(request.session['login']).child('contacted').get().val()
 
     for k in contactmap:
+        if(k == 'a'):
+            continue
         contactInfo(contacted, contactHealth, contactmap, k, request)
 
     contactmap = db.child(request.session['login']).child('contacted').get().val()
@@ -58,8 +60,7 @@ def profile(request):
             data = sick.split("+")
             if(data[1] == ''):
                 db.child(request.session['login']).child('sick').set('1+' + str(time.time()))
-                contacted = []
-                contactHealth = []
+
                 for k in contactmap:
                     if(k == 'a'):
                         continue
@@ -77,8 +78,7 @@ def profile(request):
 
             if(data[1] == ''):
                 db.child(request.session['login']).child('positive').set('1+' + str(time.time()))
-                contacted = []
-                contactHealth = []
+
                 for k in contactmap:
                     if(k == 'a'):
                         continue
