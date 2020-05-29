@@ -21,7 +21,7 @@ function positionReceived(position){
       updateInterval = setInterval(
         function(){
           navigator.geolocation.getCurrentPosition(positionReceived, error);
-        }, 2500
+        }, 5000
       );
     }
     if(tracking){
