@@ -243,11 +243,11 @@ def updateTracker(request):
                         if(ignore == 1):
                             message = "Hello, this is a message from safefromcovid.com. Our records indicate that you were just in close contact with a person claiming to be ill. Visit your profile at safefromcovid.com to learn more."
                             message += "\nInformation about contact:\nEmail of other user: " + db.child(request.session['login']).child('email').get().val() + "\nLocation of contact: " + 'https://www.google.com/maps/place/' + request.POST['lat'] + ',' + request.POST['long']
-                            email(message, db.child(user).child('email').get().val())
+                            #email(message, db.child(user).child('email').get().val())
                         if(ignore == 2):
                             message = "Hello, this is a message from safefromcovid.com. Our records indicate that you were just in close contact with a person claiming to be positive for COVID-19. Visit your profile at safefromcovid.com to learn more."
                             message += "\nInformation about contact:\nEmail of other user: " + db.child(request.session['login']).child('email').get().val() + "\nLocation of contact: " + 'https://www.google.com/maps/place/' + request.POST['lat'] + ',' + request.POST['long']
-                            email(message, db.child(user).child('email').get().val())
+                            #email(message, db.child(user).child('email').get().val())
 
                     contactmap[user] = str(mylat) + '+' + str(mylong) + '+' + str(time.time()) + '+' + str(ignore)
                     db.child(request.session['login']).child('contacted').set(contactmap)
