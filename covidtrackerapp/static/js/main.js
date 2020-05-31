@@ -98,7 +98,7 @@ function setDeclareOptions(sick, positive){
         rBtnState = "I NO LONGER CARRY COVID-19" + "+" + rBtnState.split("+")[1];
         document.getElementById('right-action-btn').value = rBtnState.split("+")[0];
       } else {
-        rBtnState = "YOU'VE TESTED POSITIVE FOR COVID-19! WAIT " + timeNotation(1728000 - (Date.now()/1000 - parseInt(data[1]))) + " TO UPDATE YOUR STATUS" + "+" + 'background-color:transparent; border-style:solid; border-color:red; color:red; width: inherit;  height:6vw; font-size:12px;';
+        rBtnState = "YOU'VE TESTED POSITIVE FOR COVID-19! WAIT " + timeNotation(1728000 - (Date.now()/1000 - parseInt(data[1]))) + " TO UPDATE" + "+" + 'background-color:transparent; border-style:solid; border-color:red; color:red; width: inherit;  height:6vw; font-size:12px;';
         document.getElementById('right-action-btn').style = rBtnState.split("+")[1];
         document.getElementById('right-action-btn').value = rBtnState.split("+")[0];
       }
@@ -114,7 +114,7 @@ function setDeclareOptions(sick, positive){
       lBtnState = "I'M NO LONGER SICK" + "+" + lBtnState.split("+")[1];
       document.getElementById('left-action-btn').value = lBtnState.split("+")[0];
     } else {
-      lBtnState = 'YOU ARE SICK! WAIT ' + timeNotation(432000 - (Date.now()/1000 - parseInt(data[1]))) + ' TO UPDATE YOUR STATUS' + "+" + 'background-color:transparent;  border-style:solid; border-color:red; color:red; width:inherit; height:6vw; font-size:12px;';
+      lBtnState = 'YOU ARE SICK! WAIT ' + timeNotation(432000 - (Date.now()/1000 - parseInt(data[1]))) + ' TO UPDATE' + "+" + 'background-color:transparent;  border-style:solid; border-color:red; color:red; width:inherit; height:6vw; font-size:12px;';
       document.getElementById('left-action-btn').style = lBtnState.split("+")[1];
       document.getElementById('left-action-btn').value = lBtnState.split("+")[0];
     }
