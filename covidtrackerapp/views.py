@@ -67,7 +67,7 @@ def profile(request):
                     if(int(contactmap[k].split("+")[3]) < 1):
                         message = 'Hello, this is a message from safefromcovid.com. A user you were in contact with recently claims that they are feeling ill. Visit your profile at safefromcovid.com to learn more'
                         message += "\nEmail of other user: " + db.child(request.session['login']).child('email').get().val() + "\nLocation of contact: https://www.google.com/maps/place/" + contactmap[k].split("+")[0] + "," + contactmap[k].split("+")[1]
-                        message += "\nDate of contact: " + time.strftime('%Y-%m-%d', int(time.localtime(round(contactmap[k].split("+")[2]))));
+                        message += "\nDate of contact: " + time.strftime('%Y-%m-%d', int(time.localtime(round(float(contactmap[k].split("+")[2])))));
                         email(message, db.child(k).child('email').get().val())
                         db.child(request.session['login']).child('contacted').child(k).set(contactmap[k][0:len(contactmap[k]) - 2] + '+1')
             else:
@@ -86,7 +86,7 @@ def profile(request):
                     if(int(contactmap[k].split("+")[3]) < 2):
                         message = 'Hello, this is a message from safefromcovid.com. A user you were in contact with recently claims that they have tested positive for COVID-19. Visit your profile at safefromcovid.com to learn more'
                         message += "\nEmail of other user: " + db.child(request.session['login']).child('email').get().val() + "\nLocation of contact: https://www.google.com/maps/place/" + contactmap[k].split("+")[0] + "," + contactmap[k].split("+")[1]
-                        message += "\nDate of contact: " + time.strftime('%Y-%m-%d', int(time.localtime(round(contactmap[k].split("+")[2]))));
+                        message += "\nDate of contact: " + time.strftime('%Y-%m-%d', int(time.localtime(round(float(contactmap[k].split("+")[2])))));
                         email(message, db.child(k).child('email').get().val())
                         db.child(request.session['login']).child('contacted').child(k).set(contactmap[k][0:len(contactmap[k]) - 2] + '+2')
 
