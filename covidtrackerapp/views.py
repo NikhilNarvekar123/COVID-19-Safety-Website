@@ -280,8 +280,7 @@ def email(message, to):
     message = 'Subject: ' + 'Important update from safefromcovid.com\n\n' + message
     server = smtplib.SMTP('smtp.gmail.com', 587)
     server.ehlo()
-    server.starttls()
-    server.ehlo()
+
     server.login('coronaaware@gmail.com', 'covidtracker20')
     server.sendmail('coronaaware@gmail.com', to, message)
 
