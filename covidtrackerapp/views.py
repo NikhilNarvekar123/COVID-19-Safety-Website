@@ -66,7 +66,7 @@ def profile(request):
                         continue
                     if(int(contactmap[k].split("+")[3]) < 1):
                         message = 'Hello, this is a message from safefromcovid.com. A user you were in contact with recently claims that they are feeling ill. Visit your profile at safefromcovid.com to learn more'
-                        message += "\nEmail of other user: " + db.child(request.session['login']).child('email').get().val() + "\nLocation of contact: https://www.google.com/maps/place/" + contactmap[k].split("+")[0] + "," + contactmap[k].split("+")[1]
+                        message += "\nEmail of other user: " + db.child(request.session['login']).child('email').get().val() + "\nLocation of contact: https://www.google.com/maps/place/" + 180*(float(contactmap[k].split("+")[0])/math.pi) + "," + 180*(float(contactmap[k].split("+")[1])/math.pi)
                         message += "\nDate of contact: " + time.strftime('%Y-%m-%d', time.localtime(round(float(contactmap[k].split("+")[2]))));
                         email(message, db.child(k).child('email').get().val())
                         db.child(request.session['login']).child('contacted').child(k).set(contactmap[k][0:len(contactmap[k]) - 2] + '+1')
@@ -85,7 +85,7 @@ def profile(request):
                         continue
                     if(int(contactmap[k].split("+")[3]) < 2):
                         message = 'Hello, this is a message from safefromcovid.com. A user you were in contact with recently claims that they have tested positive for COVID-19. Visit your profile at safefromcovid.com to learn more'
-                        message += "\nEmail of other user: " + db.child(request.session['login']).child('email').get().val() + "\nLocation of contact: https://www.google.com/maps/place/" + contactmap[k].split("+")[0] + "," + contactmap[k].split("+")[1]
+                        message += "\nEmail of other user: " + db.child(request.session['login']).child('email').get().val() + "\nLocation of contact: https://www.google.com/maps/place/" + 180*(float(contactmap[k].split("+")[0])/math.pi) + "," + 180*(float(contactmap[k].split("+")[1])/math.pi)
                         message += "\nDate of contact: " + time.strftime('%Y-%m-%d', time.localtime(round(float(contactmap[k].split("+")[2]))));
                         email(message, db.child(k).child('email').get().val())
                         db.child(request.session['login']).child('contacted').child(k).set(contactmap[k][0:len(contactmap[k]) - 2] + '+2')
@@ -212,8 +212,8 @@ def updateTracker(request):
     if(chkLogin[0] == 0):
         return redirect('logout')
     else:
-        db.child('Active').child(request.session['login']).child('lat').set(request.POST['lat'])
-        db.child('Active').child(request.session['login']).child('long').set(request.POST['long'])
+        db.child('Active').child(request.session['login']).child('lat').set((math.pi * float(request.POST['lat']))/180)
+        db.child('Active').child(request.session['login']).child('long').set((math.pi * float(request.POST['long']))/180)
 
         allActive = db.child('Active').get().val()
         for user in allActive:
@@ -242,12 +242,12 @@ def updateTracker(request):
                     if(not(user in contactmap) or time.time() - float(contactmap[user].split("+")[2]) > 43200):
                         if(ignore == 1):
                             message = "Hello, this is a message from safefromcovid.com. Our records indicate that you were just in close contact with a person claiming to be ill. Visit your profile at safefromcovid.com to learn more."
-                            message += "\nInformation about contact:\nEmail of other user: " + db.child(request.session['login']).child('email').get().val() + "\nLocation of contact: " + 'https://www.google.com/maps/place/' + request.POST['lat'] + ',' + request.POST['long']
-                            #email(message, db.child(user).child('email').get().val())
+                            message += "\nInformation about contact:\nEmail of other user: " + db.child(request.session['login']).child('email').get().val() + "\nLocation of contact: " + 'https://www.google.com/maps/place/' + (180*(float(request.POST['lat'])/(math.pi))) + ',' +  (180*(float(request.POST['long'])/(math.pi)))
+                            email(message, db.child(user).child('email').get().val())
                         if(ignore == 2):
                             message = "Hello, this is a message from safefromcovid.com. Our records indicate that you were just in close contact with a person claiming to be positive for COVID-19. Visit your profile at safefromcovid.com to learn more."
-                            message += "\nInformation about contact:\nEmail of other user: " + db.child(request.session['login']).child('email').get().val() + "\nLocation of contact: " + 'https://www.google.com/maps/place/' + request.POST['lat'] + ',' + request.POST['long']
-                            #email(message, db.child(user).child('email').get().val())
+                            message += "\nInformation about contact:\nEmail of other user: " + db.child(request.session['login']).child('email').get().val() + "\nLocation of contact: " + 'https://www.google.com/maps/place/' +  (180*(float(request.POST['lat'])/(math.pi))) + ',' +  (180*(float(request.POST['long'])/(math.pi)))
+                            email(message, db.child(user).child('email').get().val())
 
                     contactmap[user] = str(mylat) + '+' + str(mylong) + '+' + str(time.time()) + '+' + str(ignore)
                     db.child(request.session['login']).child('contacted').set(contactmap)

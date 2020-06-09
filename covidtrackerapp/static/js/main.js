@@ -32,7 +32,7 @@ function positionReceived(position){
       data:{
         csrfmiddlewaretoken:document.cookie.substring(10),
         'lat' : position.coords.latitude,
-        'long' : position.coords.longitude
+        'long' : position.coords.longitude,
       },
       success: function(){
         proceed = true;
