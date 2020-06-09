@@ -214,15 +214,22 @@ def updateTracker(request):
     else:
         db.child('Active').child(request.session['login']).child('lat').set((math.pi * float(request.POST['lat']))/180)
         db.child('Active').child(request.session['login']).child('long').set((math.pi * float(request.POST['long']))/180)
+        db.child('Active').child(request.session['login']).child('lastUp').set(time.time())
 
         allActive = db.child('Active').get().val()
         for user in allActive:
             if(not(user == 'permkey' or user == request.session['login'])):
+
+                if(allActive[user]['lastUp'] - time.time() > 20):
+                    db.child('Active').remove(user)
+                    allActive = db.child('Active').get().val()
+                    continue
+
                 mylat = (float(request.POST['lat'])/180) * math.pi
-                otherlat = allActive[user]['lat']
+                otherlat = float(allActive[user]['lat'])
 
                 mylong = (float(request.POST['long'])/180) * math.pi
-                otherlong = allActive[user]['long']
+                otherlong = float(allActive[user]['long'])
 
                 latDist = (abs(mylat - otherlat)) * 6378134
 
@@ -267,6 +274,7 @@ def initiateTracker(request):
     del acct['sick']
     acct['lat'] = -1
     acct['long'] = -1
+    acct['lastUp'] = -1
     db.child("Active").child(request.session['login']).set(acct)
 
     return HttpResponse()

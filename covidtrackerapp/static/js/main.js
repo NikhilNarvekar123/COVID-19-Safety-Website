@@ -43,7 +43,7 @@ function positionReceived(position){
 }
 
 function error(){
-  stopTracker();
+  stopTracker(false);
   alert('Please enable location services in order to use the tracker');
 }
 
@@ -69,15 +69,17 @@ function toggleTracker(){
   if(!tracking){
     initiateTracker();
   } else {
-    stopTracker();
+    stopTracker(false);
   }
 }
 
-function stopTracker(){
+function stopTracker(outside){
   tracking = false;
   clearInterval(updateInterval);
   updateInterval = null;
+  if(!outside){
   document.getElementById('track-btn').innerHTML = 'START TRACKING';
+  }
   $.ajax({
     type:'POST',
     url:'/suspend/',
