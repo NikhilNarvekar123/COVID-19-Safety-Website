@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, HttpResponse
 from django.template import RequestContext
-from django.contrib.auth import hashers
-import pyrebase, math, time, smtplib
+from django.core.mail import send_mail
+import pyrebase, math, time
 
 firebaseConfig = {
     'apiKey': "AIzaSyAWFTpdWykYSeXZJWUEBb26S69f0WYm2nQ",
@@ -277,12 +277,7 @@ def suspendTracker(request):
 
 
 def email(message, to):
-    message = 'Subject: ' + 'Important update from safefromcovid.com\n\n' + message
-    server = smtplib.SMTP('smtp.gmail.com', 587)
-    server.ehlo()
-
-    server.login('coronaaware@gmail.com', 'covidtracker20')
-    server.sendmail('coronaaware@gmail.com', to, message)
+    send_mail('Important update from Safe From Covid', message, 'coronaaware@gmail.com', [to])
 
 def getLoginInfo(request):
     res = [0, 0]
