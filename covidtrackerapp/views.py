@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, HttpResponse
 from django.template import RequestContext
-from sendgrid import SendGridAPIClient
-from sendgrid.helpers.mail import Mail
+#from sendgrid import SendGridAPIClient
+#from sendgrid.helpers.mail import Mail
 import pyrebase, math, time
 
 firebaseConfig = {
@@ -69,7 +69,7 @@ def profile(request):
                         message = 'Hello, this is a message from safefromcovid.com. A user you were in contact with recently claims that they are feeling ill. Visit your profile at safefromcovid.com to learn more'
                         message += "\nEmail of other user: " + db.child(request.session['login']).child('email').get().val() + "\nLocation of contact: https://www.google.com/maps/place/" + str(180*(float(contactmap[k].split("+")[0])/math.pi)) + "," + str(180*(float(contactmap[k].split("+")[1])/math.pi))
                         message += "\nDate of contact: " + time.strftime('%Y-%m-%d', time.localtime(round(float(contactmap[k].split("+")[2]))));
-                        email(message, db.child(k).child('email').get().val())
+                        #email(message, db.child(k).child('email').get().val())
                         db.child(request.session['login']).child('contacted').child(k).set(contactmap[k][0:len(contactmap[k]) - 2] + '+1')
             else:
                 if(time.time() - float(data[1]) > 432000):
@@ -88,7 +88,7 @@ def profile(request):
                         message = 'Hello, this is a message from safefromcovid.com. A user you were in contact with recently claims that they have tested positive for COVID-19. Visit your profile at safefromcovid.com to learn more'
                         message += "\nEmail of other user: " + db.child(request.session['login']).child('email').get().val() + "\nLocation of contact: https://www.google.com/maps/place/" + str(180*(float(contactmap[k].split("+")[0])/math.pi)) + "," + str(180*(float(contactmap[k].split("+")[1])/math.pi))
                         message += "\nDate of contact: " + time.strftime('%Y-%m-%d', time.localtime(round(float(contactmap[k].split("+")[2]))));
-                        email(message, db.child(k).child('email').get().val())
+                        #email(message, db.child(k).child('email').get().val())
                         db.child(request.session['login']).child('contacted').child(k).set(contactmap[k][0:len(contactmap[k]) - 2] + '+2')
 
             else:
@@ -251,11 +251,11 @@ def updateTracker(request):
                         if(ignore == 1):
                             message = "Hello, this is a message from safefromcovid.com. Our records indicate that you were just in close contact with a person claiming to be ill. Visit your profile at safefromcovid.com to learn more."
                             message += "\nInformation about contact:\nEmail of other user: " + db.child(request.session['login']).child('email').get().val() + "\nLocation of contact: " + 'https://www.google.com/maps/place/' + request.POST['lat'] + ',' +  request.POST['long']
-                            email(message, db.child(user).child('email').get().val())
+                            #email(message, db.child(user).child('email').get().val())
                         if(ignore == 2):
                             message = "Hello, this is a message from safefromcovid.com. Our records indicate that you were just in close contact with a person claiming to be positive for COVID-19. Visit your profile at safefromcovid.com to learn more."
                             message += "\nInformation about contact:\nEmail of other user: " + db.child(request.session['login']).child('email').get().val() + "\nLocation of contact: " + 'https://www.google.com/maps/place/' +  request.POST['lat'] + ',' +  request.POST['long']
-                            email(message, db.child(user).child('email').get().val())
+                            #email(message, db.child(user).child('email').get().val())
 
                     contactmap[user] = str(mylat) + '+' + str(mylong) + '+' + str(time.time()) + '+' + str(ignore)
                     db.child(request.session['login']).child('contacted').set(contactmap)
