@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, HttpResponse
 from django.template import RequestContext
-from django.core.mail import send_mail
+from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import Mail
 import pyrebase, math, time
 
 firebaseConfig = {
@@ -285,7 +286,12 @@ def suspendTracker(request):
 
 
 def email(message, to):
-    send_mail('Important update from Safe From Covid', message, 'coronaaware@gmail.com', [to])
+    msg = Mail(from_email = 'coronaaware@gmail.com', to_emails = to, subject = 'Important update from Safe from COVID', html_content = message)
+    try:
+        sgrid = SendGridAPIClient('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')
+        sgrid.send(msg)
+    except:
+        return
 
 def getLoginInfo(request):
     res = [0, 0]
