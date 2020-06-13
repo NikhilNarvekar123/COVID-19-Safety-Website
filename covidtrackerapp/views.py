@@ -131,7 +131,7 @@ def newProf(request):
         else:
             if(request.POST['password-conf'] == psswrd):
                 numUsers = db.child('numUsers').get().val()
-                if(numUsers < 5):
+                if(numUsers < 5000):
                     try:
                         auth.create_user_with_email_and_password(email, psswrd)
                         auth.sign_in_with_email_and_password(email, psswrd)
@@ -225,9 +225,12 @@ def updateTracker(request):
 
         allActive = db.child('Active').get().val()
         for user in allActive:
-            if(not(user == 'permkey' or user == request.session['login'])):
-                if(time.time() - allActive[user]['lastUp'] > 10):
+            if(not(user == 'permkey' or user == request.session['login'] or user == 'numTracking')):
+
+                if(time.time() - allActive[user]['lastUp'] > 10 and allActive[user]['lastUp'] != -1):
                     db.child('Active').child(user).remove()
+                    numTracking = db.child('Active').child('numTracking').get().val()
+                    db.child('Active').child('numTracking').set(numTracking - 1)
                     allActive = db.child('Active').get().val()
                     continue
 
@@ -289,7 +292,11 @@ def initiateTracker(request):
     return HttpResponse('success')
 
 def suspendTracker(request):
-    db.child("Active").child(request.session['login']).remove()
+    if('login' in request.session):
+        if(request.session['login'] in db.child('Active').get().val()):
+            db.child("Active").child(request.session['login']).remove()
+            numTracking = db.child('Active').child('numTracking').get().val()
+            db.child('Active').child('numTracking').set(numTracking - 1)
     return HttpResponse()
 
 
