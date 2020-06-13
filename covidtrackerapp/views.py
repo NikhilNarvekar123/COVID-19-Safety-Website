@@ -120,6 +120,7 @@ def contactInfo(contacted, contactHealth, contactmap, k, request):
 
 
 def newProf(request):
+    suspendTracker(request)
     context = {'navVis' : False, 'alert' : ''}
 
     if(request.method == 'POST'):
@@ -129,24 +130,29 @@ def newProf(request):
             context['alert'] = 'Password must be at least 6 characters in length'
         else:
             if(request.POST['password-conf'] == psswrd):
-                try:
-                    auth.create_user_with_email_and_password(email, psswrd)
-                    auth.sign_in_with_email_and_password(email, psswrd)
-                    auth.send_email_verification(auth.current_user['idToken'])
-                    acct = {
-                        'email' : email,
-                        'contacted' : {'a':'0'},
-                        'positive' : '0+',
-                        'sick' : '0+',
-                    }
-                    resp = redirect('home')
+                numUsers = db.child('numUsers').get().val()
+                if(numUsers < 5):
+                    try:
+                        auth.create_user_with_email_and_password(email, psswrd)
+                        auth.sign_in_with_email_and_password(email, psswrd)
+                        auth.send_email_verification(auth.current_user['idToken'])
+                        acct = {
+                            'email' : email,
+                            'contacted' : {'a':'0'},
+                            'positive' : '0+',
+                            'sick' : '0+',
+                        }
+                        resp = redirect('home')
 
-                    request.session['login'] = auth.current_user['localId']
-                    request.session['verified'] = 1
-                    db.child(auth.current_user['localId']).set(acct)
-                    return resp
-                except:
-                    context['alert'] = 'The email you entered has already been taken. Try again'
+                        request.session['login'] = auth.current_user['localId']
+                        request.session['verified'] = 0
+                        db.child(auth.current_user['localId']).set(acct)
+                        db.child('numUsers').set(numUsers + 1)
+                        return resp
+                    except:
+                        context['alert'] = 'The email you entered has already been taken. Try again'
+                else:
+                    context['alert'] = 'Unfortunately, the service has reached its max limit of users. Check our Facebook page for updates'
             else:
                 context['alert'] = 'Passwords do not match! Try again'
 
@@ -220,9 +226,8 @@ def updateTracker(request):
         allActive = db.child('Active').get().val()
         for user in allActive:
             if(not(user == 'permkey' or user == request.session['login'])):
-
-                if(allActive[user]['lastUp'] - time.time() > 20):
-                    db.child('Active').remove(user)
+                if(time.time() - allActive[user]['lastUp'] > 10):
+                    db.child('Active').child(user).remove()
                     allActive = db.child('Active').get().val()
                     continue
 
@@ -267,6 +272,9 @@ def initiateTracker(request):
     chkLogin = getLoginInfo(request)
     if(chkLogin[1] == -1):
         return logout(request)
+    numTracking = db.child('Active').child('numTracking').get().val()
+    if(numTracking >= 75):
+        return HttpResponse('excess_users')
 
     acct = db.child(request.session['login']).get().val()
     del acct['email']
@@ -277,8 +285,8 @@ def initiateTracker(request):
     acct['long'] = -1
     acct['lastUp'] = -1
     db.child("Active").child(request.session['login']).set(acct)
-
-    return HttpResponse()
+    db.child('Active').child('numTracking').set(numTracking + 1)
+    return HttpResponse('success')
 
 def suspendTracker(request):
     db.child("Active").child(request.session['login']).remove()

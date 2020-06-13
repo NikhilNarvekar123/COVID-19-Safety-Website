@@ -56,8 +56,12 @@ function initiateTracker(){
       type:'POST',
       url:'/initiate/',
       data:{csrfmiddlewaretoken:document.cookie.substring(10)},
-      success: function(){
-        navigator.geolocation.getCurrentPosition(positionReceived, error);
+      success: function(data){
+        if(data == 'excess_users'){
+          alert('The tracking feature is currently being used by its maximum load of users. Please try later.');
+        } else {
+          navigator.geolocation.getCurrentPosition(positionReceived, error);
+        }
       }
     });
   } else {
