@@ -183,6 +183,8 @@ def signIn(request):
 
             request.session['login'] = auth.current_user['localId']
             request.session['verified'] = int(auth.get_account_info(auth.current_user['idToken'])['users'][0]['emailVerified'] == True)
+            if(request.session['verified'] == 0):
+                auth.send_email_verification(auth.current_user['idToken'])
             return resp
         except Exception as e:
             print(e)
