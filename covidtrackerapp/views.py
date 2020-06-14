@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, HttpResponse
 from django.template import RequestContext
 #from sendgrid import SendGridAPIClient
 #from sendgrid.helpers.mail import Mail
+from django.core.mail import send_mail
 import pyrebase, math, time
 
 firebaseConfig = {
@@ -19,7 +20,12 @@ auth = fb.auth()
 db = fb.database()
 
 def home(request):
-    context = {'login' : 0, 'navVis' : True, 'auth' : False}
+    context = {'login' : 0, 'navVis' : True, 'auth' : False, 'browser': True}
+
+    if(visited in request.session):
+        context['browser'] = False
+    else:
+        request.session['visited'] = 1
 
     chkLogin = getLoginInfo(request)
     if(chkLogin[1] == -1):
@@ -301,12 +307,7 @@ def suspendTracker(request):
 
 
 def email(message, to):
-    msg = Mail(from_email = 'coronaaware@gmail.com', to_emails = to, subject = 'Important update from Safe from COVID', html_content = message)
-    try:
-        sgrid = SendGridAPIClient('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')
-        sgrid.send(msg)
-    except:
-        return
+    send_mail('Important update from Safe from COVID', message, 'coronaaware@gmail.com', [to])
 
 def getLoginInfo(request):
     res = [0, 0]
