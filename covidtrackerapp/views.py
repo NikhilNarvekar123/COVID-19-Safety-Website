@@ -22,7 +22,7 @@ db = fb.database()
 def home(request):
     context = {'login' : 0, 'navVis' : True, 'auth' : False, 'browser': True}
 
-    if(visited in request.session):
+    if('visited' in request.session):
         context['browser'] = False
     else:
         request.session['visited'] = 1
