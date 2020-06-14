@@ -75,7 +75,7 @@ def profile(request):
                         message = 'Hello, this is a message from safefromcovid.com. A user you were in contact with recently claims that they are feeling ill. Visit your profile at safefromcovid.com to learn more'
                         message += "\nEmail of other user: " + db.child(request.session['login']).child('email').get().val() + "\nLocation of contact: https://www.google.com/maps/place/" + str(180*(float(contactmap[k].split("+")[0])/math.pi)) + "," + str(180*(float(contactmap[k].split("+")[1])/math.pi))
                         message += "\nDate of contact: " + time.strftime('%Y-%m-%d', time.localtime(round(float(contactmap[k].split("+")[2]))));
-                        #email(message, db.child(k).child('email').get().val())
+                        email(message, db.child(k).child('email').get().val())
                         db.child(request.session['login']).child('contacted').child(k).set(contactmap[k][0:len(contactmap[k]) - 2] + '+1')
             else:
                 if(time.time() - float(data[1]) > 432000):
@@ -94,7 +94,7 @@ def profile(request):
                         message = 'Hello, this is a message from safefromcovid.com. A user you were in contact with recently claims that they have tested positive for COVID-19. Visit your profile at safefromcovid.com to learn more'
                         message += "\nEmail of other user: " + db.child(request.session['login']).child('email').get().val() + "\nLocation of contact: https://www.google.com/maps/place/" + str(180*(float(contactmap[k].split("+")[0])/math.pi)) + "," + str(180*(float(contactmap[k].split("+")[1])/math.pi))
                         message += "\nDate of contact: " + time.strftime('%Y-%m-%d', time.localtime(round(float(contactmap[k].split("+")[2]))));
-                        #email(message, db.child(k).child('email').get().val())
+                        email(message, db.child(k).child('email').get().val())
                         db.child(request.session['login']).child('contacted').child(k).set(contactmap[k][0:len(contactmap[k]) - 2] + '+2')
 
             else:
