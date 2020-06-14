@@ -182,7 +182,7 @@ def signIn(request):
             resp = redirect('home')
 
             request.session['login'] = auth.current_user['localId']
-            request.session['verified'] = 1#int(auth.get_account_info(auth.current_user['idToken'])['users'][0]['emailVerified'] == True)
+            request.session['verified'] = int(auth.get_account_info(auth.current_user['idToken'])['users'][0]['emailVerified'] == True)
             return resp
         except Exception as e:
             print(e)
@@ -191,7 +191,7 @@ def signIn(request):
     return render(request, 'sign-in.html', context)
 
 def tracker(request):
-    context = {'navVis' : True, 'auth' : True, 'login' : 1}
+    context = {'navVis' : True, 'auth' : True, 'login' : 1, 'alert' : ""}
 
     chkLogin = getLoginInfo(request)
 
@@ -265,11 +265,11 @@ def updateTracker(request):
                         if(ignore == 1):
                             message = "Hello, this is a message from safefromcovid.com. Our records indicate that you were just in close contact with a person claiming to be ill. Visit your profile at safefromcovid.com to learn more."
                             message += "\nInformation about contact:\nEmail of other user: " + db.child(request.session['login']).child('email').get().val() + "\nLocation of contact: " + 'https://www.google.com/maps/place/' + request.POST['lat'] + ',' +  request.POST['long']
-                            #email(message, db.child(user).child('email').get().val())
+                            email(message, db.child(user).child('email').get().val())
                         if(ignore == 2):
                             message = "Hello, this is a message from safefromcovid.com. Our records indicate that you were just in close contact with a person claiming to be positive for COVID-19. Visit your profile at safefromcovid.com to learn more."
                             message += "\nInformation about contact:\nEmail of other user: " + db.child(request.session['login']).child('email').get().val() + "\nLocation of contact: " + 'https://www.google.com/maps/place/' +  request.POST['lat'] + ',' +  request.POST['long']
-                            #email(message, db.child(user).child('email').get().val())
+                            email(message, db.child(user).child('email').get().val())
 
                     contactmap[user] = str(mylat) + '+' + str(mylong) + '+' + str(time.time()) + '+' + str(ignore)
                     db.child(request.session['login']).child('contacted').set(contactmap)
