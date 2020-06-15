@@ -20,12 +20,7 @@ auth = fb.auth()
 db = fb.database()
 
 def home(request):
-    context = {'login' : 0, 'navVis' : True, 'auth' : False, 'browser': True}
-
-    if('visited' in request.session):
-        context['browser'] = False
-    else:
-        request.session['visited'] = 1
+    context = {'login' : 0, 'navVis' : True, 'auth' : False}
 
     chkLogin = getLoginInfo(request)
     if(chkLogin[1] == -1):
@@ -72,7 +67,7 @@ def profile(request):
                     if(k == 'a'):
                         continue
                     if(int(contactmap[k].split("+")[3]) < 1):
-                        message = 'Hello, this is a message from safefromcovid.com. A user you were in contact with recently claims that they are feeling ill. Visit your profile at safefromcovid.com to learn more'
+                        message = 'Hello, this is a message from Safe from COVID. A user you were in contact with recently claims that they are feeling ill. Visit your profile at https://safefromcovid.herokuapp.com to learn more'
                         message += "\nEmail of other user: " + db.child(request.session['login']).child('email').get().val() + "\nLocation of contact: https://www.google.com/maps/place/" + str(180*(float(contactmap[k].split("+")[0])/math.pi)) + "," + str(180*(float(contactmap[k].split("+")[1])/math.pi))
                         message += "\nDate of contact: " + time.strftime('%Y-%m-%d', time.localtime(round(float(contactmap[k].split("+")[2]))));
                         email(message, db.child(k).child('email').get().val())
@@ -91,7 +86,7 @@ def profile(request):
                     if(k == 'a'):
                         continue
                     if(int(contactmap[k].split("+")[3]) < 2):
-                        message = 'Hello, this is a message from safefromcovid.com. A user you were in contact with recently claims that they have tested positive for COVID-19. Visit your profile at safefromcovid.com to learn more'
+                        message = 'Hello, this is a message from Safe from COVID. A user you were in contact with recently claims that they have tested positive for COVID-19. Visit your profile at https://safefromcovid.herokuapp.com to learn more'
                         message += "\nEmail of other user: " + db.child(request.session['login']).child('email').get().val() + "\nLocation of contact: https://www.google.com/maps/place/" + str(180*(float(contactmap[k].split("+")[0])/math.pi)) + "," + str(180*(float(contactmap[k].split("+")[1])/math.pi))
                         message += "\nDate of contact: " + time.strftime('%Y-%m-%d', time.localtime(round(float(contactmap[k].split("+")[2]))));
                         email(message, db.child(k).child('email').get().val())
@@ -187,7 +182,6 @@ def signIn(request):
                 auth.send_email_verification(auth.current_user['idToken'])
             return resp
         except Exception as e:
-            print(e)
             context['alert'] = 'Email/password is incorrect! Try again'
 
     return render(request, 'sign-in.html', context)
@@ -263,13 +257,13 @@ def updateTracker(request):
                     if(db.child(request.session['login']).child('positive').get().val().split('+')[0] == '1'):
                         ignore = 2
 
-                    if(not(user in contactmap) or time.time() - float(contactmap[user].split("+")[2]) > 43200):
+                    if(not(user in contactmap) or time.time() - float(contactmap[user].split("+")[2]) > 1800):
                         if(ignore == 1):
-                            message = "Hello, this is a message from safefromcovid.com. Our records indicate that you were just in close contact with a person claiming to be ill. Visit your profile at safefromcovid.com to learn more."
+                            message = "Hello, this is a message from Safe from COVID. Our records indicate that you were just in close contact with a person claiming to be ill. Visit your profile at https://safefromcovid.herokuapp.com to learn more."
                             message += "\nInformation about contact:\nEmail of other user: " + db.child(request.session['login']).child('email').get().val() + "\nLocation of contact: " + 'https://www.google.com/maps/place/' + request.POST['lat'] + ',' +  request.POST['long']
                             email(message, db.child(user).child('email').get().val())
                         if(ignore == 2):
-                            message = "Hello, this is a message from safefromcovid.com. Our records indicate that you were just in close contact with a person claiming to be positive for COVID-19. Visit your profile at safefromcovid.com to learn more."
+                            message = "Hello, this is a message from Safe from COVID. Our records indicate that you were just in close contact with a person claiming to be positive for COVID-19. Visit your profile at https://safefromcovid.herokuapp.com to learn more."
                             message += "\nInformation about contact:\nEmail of other user: " + db.child(request.session['login']).child('email').get().val() + "\nLocation of contact: " + 'https://www.google.com/maps/place/' +  request.POST['lat'] + ',' +  request.POST['long']
                             email(message, db.child(user).child('email').get().val())
 
@@ -324,7 +318,7 @@ def getLoginInfo(request):
     if('verified' in request.session):
         res[1] = request.session['verified']
     else:
-        #Verified cookie expired but login still valid
+        #Verified session var expired but login still valid
         res[1] = -1
 
     return res
