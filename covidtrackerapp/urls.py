@@ -12,5 +12,6 @@ urlpatterns = [
     path('tracker/', views.tracker, name = 'tracker'),
     path('initiate/', views.initiateTracker, name = 'initiate'),
     path('suspend/', views.suspendTracker, name = 'suspend'),
-    path('update/', views.updateTracker, name = 'update')
+    path('update/', views.updateTracker, name = 'update'),
+    path('password-reset/', views.passwordReset, name = 'password-reset')
 ]

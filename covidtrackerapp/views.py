@@ -186,6 +186,16 @@ def signIn(request):
 
     return render(request, 'sign-in.html', context)
 
+def passwordReset(request):
+    context = {'alert' : ''}
+    if(request.method == 'POST'):
+        try:
+            auth.send_password_reset_email(request.POST['address'])
+            context['alert'] = 'Your account has been identified. Please check your inbox for instructions on resetting your password'
+        except:
+            context['alert'] = 'Invalid email entered. Try again!'
+    return render(request, 'password-reset.html', context)
+
 def tracker(request):
     context = {'navVis' : True, 'auth' : True, 'login' : 1, 'alert' : ""}
 
