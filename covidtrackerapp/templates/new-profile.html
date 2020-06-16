@@ -1,9 +1,18 @@
+<<<<<<< HEAD
 <head>
   {%load static%}
+=======
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- {%load static%} -->
+>>>>>>> e2d2dfbc069d2cc5d842baa3a1daa82957406b84
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+<<<<<<< HEAD
     <title>New Profile | Safe from COVID</title>
     <link rel= "stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
@@ -34,11 +43,53 @@
 
 
 <script type = 'text/javascript'>
+=======
+    <!-- <title>{%block title%}{%endblock%}</title> -->
+    <link rel= "stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- <link rel= "stylesheet" href="{%static "css/base.css"%}">
+    <link rel= "stylesheet" href="{%static "css/home.css"%}"> -->
+    <link rel= "stylesheet" href="base.css">
+    <link rel= "stylesheet" href="profile-creation.css">
+    <!-- <link rel = "stylesheet" href = "{%static "css/profile-creation.css"%}"> -->
+    <!-- <script src="{%static "js/main.js"%}"></script> -->
+    <script src="main.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <!-- {%if navVis%} -->
+    <div class="topnav">
+        <a onclick = 'redirect("/home")' id = 'home-btn'>Home</a>
+        <a id = 'about-btn' onclick = 'redirect("/about")'>About</a>
+        <!-- {%if login != 0%} -->
+        <a onclick = 'redirect("/profile")' id = 'profile-nav-btn'>Profile</a>
+        <!-- {%if auth == True%} -->
+        <a id = 'tracker-nav-btn' onclick = 'redirect("/tracker")'>Tracker</a>
+        <!-- {%endif%} -->
+        <a id = 'logout-btn' onclick = 'redirect("/logout")'>Logout</a>
+        <!-- {%endif%} -->
+    </div>
+    <!-- {%endif%} -->
+</head>
+
+<!-- {%extends 'common.html'%}
+{%block title%}Create Profile | Safe From COVID{%endblock%}
+{%block content%} -->
+
+<body>
+
+  <!-- Disable for now but this prevents the page from loading
+      not sure if that's what u need to do but u can use the html
+      alert element ive made  -->
+  <!-- <script type = 'text/javascript'>
+>>>>>>> e2d2dfbc069d2cc5d842baa3a1daa82957406b84
     var alertMsg = "{{alert}}";
     if(alertMsg.length > 0){
       alert(alertMsg);
     }
+<<<<<<< HEAD
   </script>
+=======
+  </script> -->
+>>>>>>> e2d2dfbc069d2cc5d842baa3a1daa82957406b84
 
 
     <h2>Create Your Profile</h2>
@@ -47,7 +98,11 @@
 
         <div class = "jumbotron">
             <form name = 'input' method = 'post'>
+<<<<<<< HEAD
                 {%csrf_token%}
+=======
+                <!-- {%csrf_token%} -->
+>>>>>>> e2d2dfbc069d2cc5d842baa3a1daa82957406b84
                 <p style= "font-size: calc(12px + (17 - 12) * ((100vw - 400px) / (1600 - 400)));">Enter Email Address:</p>
                 <input type="text" id="address" name = 'address' placeholder="Enter Email">
                 <p style= "font-size: calc(12px + (17 - 12) * ((100vw - 400px) / (1600 - 400)));">Enter Password:</p>
@@ -63,3 +118,8 @@
     </div>
 
 </body>
+<<<<<<< HEAD
+=======
+
+<!-- {%endblock%} -->
+>>>>>>> e2d2dfbc069d2cc5d842baa3a1daa82957406b84

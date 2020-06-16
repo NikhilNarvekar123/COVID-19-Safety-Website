@@ -1,9 +1,18 @@
+<<<<<<< HEAD
 <head>
   {%load static%}
+=======
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- {%load static%} -->
+>>>>>>> e2d2dfbc069d2cc5d842baa3a1daa82957406b84
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+<<<<<<< HEAD
     <title>Profile | Safe from COVID</title>
     <link rel= "stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
@@ -27,6 +36,39 @@
     </div>
     {%endif%}
 </head>
+=======
+    <!-- <title>{%block title%}{%endblock%}</title> -->
+    <link rel= "stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- <link rel= "stylesheet" href="{%static "css/base.css"%}">
+    <link rel= "stylesheet" href="{%static "css/home.css"%}"> -->
+    <link rel= "stylesheet" href="base.css">
+    <link rel="stylesheet" href="profile-creation.css">
+    <!-- <link rel = "stylesheet" href = "{%static "css/profile-creation.css"%}"> -->
+    <!-- <script src="{%static "js/main.js"%}"></script> -->
+    <script src="main.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <!-- {%if navVis%} -->
+    <div class="topnav">
+        <a onclick = 'redirect("/home")' id = 'home-btn'>Home</a>
+        <a id = 'about-btn' onclick = 'redirect("/about")'>About</a>
+        <!-- {%if login != 0%} -->
+        <a onclick = 'redirect("/profile")' id = 'profile-nav-btn'>Profile</a>
+        <!-- {%if auth == True%} -->
+        <a id = 'tracker-nav-btn' onclick = 'redirect("/tracker")'>Tracker</a>
+        <!-- {%endif%} -->
+        <a id = 'logout-btn' onclick = 'redirect("/logout")'>Logout</a>
+        <!-- {%endif%} -->
+    </div>
+    <!-- {%endif%} -->
+
+</head>
+
+
+<!-- {%extends 'common.html'%}
+{%block title%}Profile | Safe From COVID{%endblock%}
+{%block content%} -->
+>>>>>>> e2d2dfbc069d2cc5d842baa3a1daa82957406b84
 
 <body onload = "document.getElementById('profile-nav-btn').className = 'active'; fillList({{contacted}}, {{contacthealth}}); setDeclareOptions('{{sick}}', '{{positive}}');">
 
@@ -40,6 +82,7 @@
             Your Email: {{email}}
         </p>
 
+<<<<<<< HEAD
         {%if auth == 0%}
         <t style = 'color:red; font-size: calc(12px + (17 - 12) * ((100vw - 400px) / (1600 - 400)));'>Please check your inbox for a verification email. Your email must be verified before using contact tracing</t>
 
@@ -47,6 +90,15 @@
         <!-- i have no fkin idea wtf this next element is supposed to be LMAO but its messing up the formatting  -->
         <strong style = "color:white; margin-left:2vw">Let others you came in contact with be aware of your health status:</strong><br><br>
         <strong id = 'warning' style = "color:red; margin-left:2vw; visibility:hidden;"> </strong><br>
+=======
+        <!-- {%if auth == 0%} -->
+        <t style = 'color:red; font-size: calc(12px + (17 - 12) * ((100vw - 400px) / (1600 - 400)));'>Please check your inbox for a verification email. Your email must be verified before using contact tracing</t>
+
+        <!-- {%endif%} -->
+        <!-- i have no fkin idea wtf this next element is supposed to be LMAO but its messing up the formatting  -->
+        <!-- <strong style = "color:white; margin-left:2vw">Let others you came in contact with be aware of your health status:</strong><br><br> -->
+        <!-- <strong id = 'warning' style = "color:red; margin-left:2vw; visibility:hidden;"> </strong><br> -->
+>>>>>>> e2d2dfbc069d2cc5d842baa3a1daa82957406b84
 
 
 
@@ -55,11 +107,20 @@
              visible for testing purposes u can change it back when ur done) okk also theres a problem in scaling the submit btns ill fix later
         -->
         <div class = "container" align = 'center'>
+<<<<<<< HEAD
           <form method = 'post' name = 'update-status' onsubmit = 'return checkSubmit()' style = "width: 100%">
               {%csrf_token%}
               <input type="submit" class = 'health' name = 'sick-btn' value="I'M SICK"  id = 'left-action-btn' onclick = 'handleClaim("left")' style = 'visibility:hidden; background-color:red; color:white; width: inherit; height:6vw; font-size:12px;'>
               <br>
               <input type="submit" class = 'health' name = 'positive-btn' value="I HAVE TESTED POSITIVE FOR COVID-19" id = 'right-action-btn' onclick = 'handleClaim("right")' style = 'background-color:red; color:white; width: inherit; height:6vw; font-size:12px;'>
+=======
+          <form method = 'post' name = 'update-status' onsubmit = 'return checkSubmit()' style = "width: 50%">
+              <!-- {%csrf_token%} -->
+              <ul>
+                <input type="submit" name = 'sick-btn' value="I'M SICK"  id = 'left-action-btn' style="visibility: visible" onclick = 'handleClaim("left")'>
+                <input type="submit" name = 'positive-btn' value="I HAVE TESTED POSITIVE FOR COVID-19" id = 'right-action-btn' onclick = 'handleClaim("right")'>
+              </ul>
+>>>>>>> e2d2dfbc069d2cc5d842baa3a1daa82957406b84
           </form>
         </div>
 
@@ -71,3 +132,7 @@
     </div>
 
 </body>
+<<<<<<< HEAD
+=======
+<!-- {%endblock%} -->
+>>>>>>> e2d2dfbc069d2cc5d842baa3a1daa82957406b84

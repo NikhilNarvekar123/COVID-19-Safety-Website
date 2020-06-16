@@ -158,6 +158,13 @@ function timeNotation(time){
   return time.toString() + " " + lbltext;
 }
 
+function mapNav() {
+  var x = document.getElementById("mapAlert");
+  if (x.style.visibility === "hidden") {
+    x.style.visibility = "visible";
+  }
+}
+
 function fillList(contacted, health){
   var elements = [];
   console.log(contacted);

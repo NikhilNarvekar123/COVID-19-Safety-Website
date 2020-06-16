@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 <head>
   {%load static%}
@@ -33,25 +34,79 @@
 <body onload="document.getElementById('home-btn').className = 'active';">
 
     <h1 style="padding-top: 1vw;  ">Safe from COVID</h1>
+=======
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- {%load static%} -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- <title>{%block title%}{%endblock%}</title> -->
+    <link rel= "stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- <link rel= "stylesheet" href="{%static "css/base.css"%}">
+    <link rel= "stylesheet" href="{%static "css/home.css"%}"> -->
+    <link rel= "stylesheet" href="base.css">
+    <link rel= "stylesheet" href="home.css">
+    <!-- <link rel = "stylesheet" href = "{%static "css/profile-creation.css"%}"> -->
+    <!-- <script src="{%static "js/main.js"%}"></script> -->
+    <script src="main.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <!-- {%if navVis%} -->
+    <div class="topnav">
+        <a onclick = 'redirect("/home")' id = 'home-btn'>Home</a>
+        <a id = 'about-btn' onclick = 'redirect("/about")'>About</a>
+        <!-- {%if login != 0%} -->
+        <a onclick = 'redirect("/profile")' id = 'profile-nav-btn'>Profile</a>
+        <!-- {%if auth == True%} -->
+        <a id = 'tracker-nav-btn' onclick = 'redirect("/tracker")'>Tracker</a>
+        <!-- {%endif%} -->
+        <a id = 'logout-btn' onclick = 'redirect("/logout")'>Logout</a>
+        <!-- {%endif%} -->
+    </div>
+    <!-- {%endif%} -->
+</head>
+
+
+
+<!-- {%extends 'common.html'%}
+{%block title%}Home | Safe From COVID{%endblock%}
+{%block content%} -->
+
+<body onload="document.getElementById('home-btn').className = 'active'">
+
+    <h1 style="padding-top: 1vw;  "> COVID-19 Safety Tracker</h1>
+>>>>>>> e2d2dfbc069d2cc5d842baa3a1daa82957406b84
 
     <!-- intro -->
     <div class = "container" >
         <div class = "jumbotron">
             <h2>Site Info</h2>
             <p style= "font-size: calc(12px + (17 - 12) * ((100vw - 400px) / (1600 - 400)));">This website has been created as a helpful portal during
+<<<<<<< HEAD
             the COVID-19 global pandemic. By making a profile (below), you can use our contact tracing
             feature to be alerted when you come in close contact with anyone claiming to be sick or positive for COVID-19. We are open to suggestions for new features
             and improvements. You can reach us through our Facebook page: </p><a style = "color:#ffff00; font-size: calc(12px + (17 - 12) * ((100vw - 400px) / (1600 - 400)));" href = 'https://www.facebook.com/Safe-from-COVID-103580788051476'>Facebook Page</a>
+=======
+            the COVID-19 global pandemic. By making a profile (below), you can use our spread-tracker
+            feature and see whether you have come in close contact with anyone infected with COVID-19. You can
+            also find what restaurants/shops are open in your area, as well as find help on how to stay safe
+            and occupied at home. </p>
+>>>>>>> e2d2dfbc069d2cc5d842baa3a1daa82957406b84
         </div>
     </div>
 
     <!-- buttons for sign in -->
-    {%if login == 0%}
+    <!-- {%if login == 0%} -->
     <div class = "button_layout">
         <button id = 'create-profile-btn' onclick='redirect("/create-profile")'>Create a Profile</button>
         <button id = 'sign-in-btn' onclick='redirect("/sign-in")'>Sign In</button>
     </div>
 
+<<<<<<< HEAD
 
     {%else%}
     <div class = 'container'>
@@ -64,5 +119,48 @@
       {%endif%}
     {%endif%}
 
+=======
+    <!-- OK, im guessing this changes whether the user is logged in or not
+         it looks good other than some POSSIBLE spacing issues so im not gonna change -->
+
+    <!-- {%else%}
+    <div class = 'container'>
+        <h1 id = 'greeting'>Welcome, User</h1>
+    </div>
+    {%if auth == False%}
+    <div class = 'container'>
+    <h2>Please verify your account before using contact tracing</h2>
+    </div>
+    {%endif%}
+    {%endif%} -->
+
+    <!-- ok u can leave the first panel in _ i've greyed it out by default and
+         you can add a feature where it ungreys out if the user has signed in -->
+    <div class = "panel_layout">
+        <div class = "jumbotron" onclick="mapNav()" style = "filter: grayscale(100%);">
+            <h2>See how COVID-19 is spreading in your area →</h2>
+        </div>
+
+        <div class = "jumbotron" onclick="activityNav()">
+            <h2>Find Activities to do while in quarantine →</h2>
+        </div>
+
+        <div class = "jumbotron" onclick="safetyNav()">
+            <h2>Stay safe from the virus →</h2>
+        </div>
+    </div>
+
+    <!-- I set up the pop-up alert but for some reason doesn't stay hidden on page load. But works
+        afterwards???? -->
+    <div class="alert" id="mapAlert">
+      <span class="closebtn" onclick="this.parentElement.style.visibility ='hidden';">&times;</span>
+      You must be signed in to access this feature.
+    </div>
+>>>>>>> e2d2dfbc069d2cc5d842baa3a1daa82957406b84
+
 
 </body>
+<<<<<<< HEAD
+=======
+<!-- {%endblock%} -->
+>>>>>>> e2d2dfbc069d2cc5d842baa3a1daa82957406b84
