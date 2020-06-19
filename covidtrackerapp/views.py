@@ -46,77 +46,77 @@ def profile(request):
 
     contacted = []
     contactHealth = []
-    contactmap = db.child(request.session['login']).child('contacted').get().val()
+    contactmap = db.child(request.session['login']).child('contacted').get(request.session['auth']).val()
 
     for k in contactmap:
         if(k == 'a'):
             continue
         contactInfo(contacted, contactHealth, contactmap, k, request)
 
-    contactmap = db.child(request.session['login']).child('contacted').get().val()
+    contactmap = db.child(request.session['login']).child('contacted').get(request.session['auth']).val()
 
     if(request.method == 'POST'):
 
         if('sick' in request.POST):
-            sick = db.child(request.session['login']).child('sick').get().val()
+            sick = db.child(request.session['login']).child('sick').get(request.session['auth']).val()
             data = sick.split("+")
             if(data[1] == ''):
-                db.child(request.session['login']).child('sick').set('1+' + str(time.time()))
+                db.child(request.session['login']).child('sick').set('1+' + str(time.time()), request.session['auth'])
 
                 for k in contactmap:
                     if(k == 'a'):
                         continue
                     if(int(contactmap[k].split("+")[3]) < 1):
                         message = 'Hello, this is a message from Safe from COVID. A user you were in contact with recently claims that they are feeling ill. Visit your profile at https://safefromcovid.herokuapp.com to learn more'
-                        message += "\nEmail of other user: " + db.child(request.session['login']).child('email').get().val() + "\nLocation of contact: https://www.google.com/maps/place/" + str(180*(float(contactmap[k].split("+")[0])/math.pi)) + "," + str(180*(float(contactmap[k].split("+")[1])/math.pi))
+                        message += "\nEmail of other user: " + db.child(request.session['login']).child('email').get(request.session['auth']).val() + "\nLocation of contact: https://www.google.com/maps/place/" + str(180*(float(contactmap[k].split("+")[0])/math.pi)) + "," + str(180*(float(contactmap[k].split("+")[1])/math.pi))
                         message += "\nDate of contact: " + time.strftime('%Y-%m-%d', time.localtime(round(float(contactmap[k].split("+")[2]))));
-                        email(message, db.child(k).child('email').get().val())
-                        db.child(request.session['login']).child('contacted').child(k).set(contactmap[k][0:len(contactmap[k]) - 2] + '+1')
+                        email(message, db.child(k).child('email').get(request.session['auth']).val())
+                        db.child(request.session['login']).child('contacted').child(k).set(contactmap[k][0:len(contactmap[k]) - 2] + '+1', request.session['auth'])
             else:
                 if(time.time() - float(data[1]) > 432000):
-                    db.child(request.session['login']).child('sick').set('0+')
+                    db.child(request.session['login']).child('sick').set('0+', request.session['auth'])
         else:
-            positive = db.child(request.session['login']).child('positive').get().val()
+            positive = db.child(request.session['login']).child('positive').get(request.session['auth']).val()
             data = positive.split("+")
 
             if(data[1] == ''):
-                db.child(request.session['login']).child('positive').set('1+' + str(time.time()))
+                db.child(request.session['login']).child('positive').set('1+' + str(time.time()), request.session['auth'])
 
                 for k in contactmap:
                     if(k == 'a'):
                         continue
                     if(int(contactmap[k].split("+")[3]) < 2):
                         message = 'Hello, this is a message from Safe from COVID. A user you were in contact with recently claims that they have tested positive for COVID-19. Visit your profile at https://safefromcovid.herokuapp.com to learn more'
-                        message += "\nEmail of other user: " + db.child(request.session['login']).child('email').get().val() + "\nLocation of contact: https://www.google.com/maps/place/" + str(180*(float(contactmap[k].split("+")[0])/math.pi)) + "," + str(180*(float(contactmap[k].split("+")[1])/math.pi))
+                        message += "\nEmail of other user: " + db.child(request.session['login']).child('email').get(request.session['auth']).val() + "\nLocation of contact: https://www.google.com/maps/place/" + str(180*(float(contactmap[k].split("+")[0])/math.pi)) + "," + str(180*(float(contactmap[k].split("+")[1])/math.pi))
                         message += "\nDate of contact: " + time.strftime('%Y-%m-%d', time.localtime(round(float(contactmap[k].split("+")[2]))));
-                        email(message, db.child(k).child('email').get().val())
-                        db.child(request.session['login']).child('contacted').child(k).set(contactmap[k][0:len(contactmap[k]) - 2] + '+2')
+                        email(message, db.child(k).child('email').get(request.session['auth']).val())
+                        db.child(request.session['login']).child('contacted').child(k).set(contactmap[k][0:len(contactmap[k]) - 2] + '+2', request.session['auth'])
 
             else:
                 if(time.time() - float(data[1]) > 1728000):
-                    db.child(request.session['login']).child('positive').set('0+')
+                    db.child(request.session['login']).child('positive').set('0+', request.session['auth'])
 
     context['auth'] = chkLogin[1] == 1
 
     context['contacted'] = contacted
     context['contacthealth'] = contactHealth
 
-    context['sick'] = db.child(request.session['login']).child('sick').get().val()
-    context['positive'] = db.child(request.session['login']).child('positive').get().val()
-    context['email'] = db.child(request.session['login']).child('email').get().val()
+    context['sick'] = db.child(request.session['login']).child('sick').get(request.session['auth']).val()
+    context['positive'] = db.child(request.session['login']).child('positive').get(request.session['auth']).val()
+    context['email'] = db.child(request.session['login']).child('email').get(request.session['auth']).val()
 
     return render(request, 'profile.html', context)
 
 def contactInfo(contacted, contactHealth, contactmap, k, request):
     timedif = time.time() - float((contactmap[k].split("+"))[2])
     if(timedif/3600 > 360):
-        db.child(request.session['login']).child('contacted').child(k).remove()
+        db.child(request.session['login']).child('contacted').child(k).remove(request.session['auth'])
     else:
         contacted.append(contactmap[k])
         contactHealth.append(0)
-        if(db.child(k).child('sick').get().val().split('+')[0] == '1'):
+        if(db.child(k).child('sick').get(request.session['auth']).val().split('+')[0] == '1'):
             contactHealth[len(contactHealth) - 1] = 1
-        if(db.child(k).child('positive').get().val().split('+')[0] == '1'):
+        if(db.child(k).child('positive').get(request.session['auth']).val().split('+')[0] == '1'):
             contactHealth[len(contactHealth) - 1] = 2
 
 
@@ -131,7 +131,7 @@ def newProf(request):
             context['alert'] = 'Password must be at least 6 characters in length'
         else:
             if(request.POST['password-conf'] == psswrd):
-                numUsers = db.child('numUsers').get().val()
+                numUsers = db.child('numUsers').get(request.session['auth']).val()
                 if(numUsers < 5000):
                     try:
                         auth.create_user_with_email_and_password(email, psswrd)
@@ -147,8 +147,9 @@ def newProf(request):
 
                         request.session['login'] = auth.current_user['localId']
                         request.session['verified'] = 0
-                        db.child(auth.current_user['localId']).set(acct)
-                        db.child('numUsers').set(numUsers + 1)
+                        request.session['auth'] = auth.current_user['idToken']
+                        db.child(auth.current_user['localId']).set(acct, request.session['auth'])
+                        db.child('numUsers').set(numUsers + 1, request.session['auth'])
                         return resp
                     except:
                         context['alert'] = 'The email you entered has already been taken. Try again'
@@ -178,6 +179,7 @@ def signIn(request):
 
             request.session['login'] = auth.current_user['localId']
             request.session['verified'] = int(auth.get_account_info(auth.current_user['idToken'])['users'][0]['emailVerified'] == True)
+            request.session['auth'] = auth.current_user['idToken']
             if(request.session['verified'] == 0):
                 auth.send_email_verification(auth.current_user['idToken'])
             return resp
@@ -231,19 +233,19 @@ def updateTracker(request):
     if(chkLogin[0] == 0):
         return redirect('logout')
     else:
-        db.child('Active').child(request.session['login']).child('lat').set((math.pi * float(request.POST['lat']))/180)
-        db.child('Active').child(request.session['login']).child('long').set((math.pi * float(request.POST['long']))/180)
-        db.child('Active').child(request.session['login']).child('lastUp').set(time.time())
+        db.child('Active').child(request.session['login']).child('lat').set((math.pi * float(request.POST['lat']))/180, request.session['auth'])
+        db.child('Active').child(request.session['login']).child('long').set((math.pi * float(request.POST['long']))/180, request.session['auth'])
+        db.child('Active').child(request.session['login']).child('lastUp').set(time.time(), request.session['auth'])
 
-        allActive = db.child('Active').get().val()
+        allActive = db.child('Active').get(request.session['auth']).val()
         for user in allActive:
             if(not(user == 'permkey' or user == request.session['login'] or user == 'numTracking')):
 
                 if(time.time() - allActive[user]['lastUp'] > 10 and allActive[user]['lastUp'] != -1):
-                    db.child('Active').child(user).remove()
-                    numTracking = db.child('Active').child('numTracking').get().val()
-                    db.child('Active').child('numTracking').set(numTracking - 1)
-                    allActive = db.child('Active').get().val()
+                    db.child('Active').child(user).remove(request.session['auth'])
+                    numTracking = db.child('Active').child('numTracking').get(request.session['auth']).val()
+                    db.child('Active').child('numTracking').set(numTracking - 1, request.session['auth'])
+                    allActive = db.child('Active').get(request.session['auth']).val()
                     continue
 
                 mylat = (float(request.POST['lat'])/180) * math.pi
@@ -261,24 +263,24 @@ def updateTracker(request):
 
                 if(dist < 50):
                     ignore = 0
-                    contactmap = db.child(request.session['login']).child('contacted').get().val()
-                    if(db.child(request.session['login']).child('sick').get().val().split('+')[0] == '1'):
+                    contactmap = db.child(request.session['login']).child('contacted').get(request.session['auth']).val()
+                    if(db.child(request.session['login']).child('sick').get(request.session['auth']).val().split('+')[0] == '1'):
                         ignore = 1
-                    if(db.child(request.session['login']).child('positive').get().val().split('+')[0] == '1'):
+                    if(db.child(request.session['login']).child('positive').get(request.session['auth']).val().split('+')[0] == '1'):
                         ignore = 2
 
                     if(not(user in contactmap) or time.time() - float(contactmap[user].split("+")[2]) > 1800):
                         if(ignore == 1):
                             message = "Hello, this is a message from Safe from COVID. Our records indicate that you were just in close contact with a person claiming to be ill. Visit your profile at https://safefromcovid.herokuapp.com to learn more."
-                            message += "\nInformation about contact:\nEmail of other user: " + db.child(request.session['login']).child('email').get().val() + "\nLocation of contact: " + 'https://www.google.com/maps/place/' + request.POST['lat'] + ',' +  request.POST['long']
-                            email(message, db.child(user).child('email').get().val())
+                            message += "\nInformation about contact:\nEmail of other user: " + db.child(request.session['login']).child('email').get(request.session['auth']).val() + "\nLocation of contact: " + 'https://www.google.com/maps/place/' + request.POST['lat'] + ',' +  request.POST['long']
+                            email(message, db.child(user).child('email').get(request.session['auth']).val())
                         if(ignore == 2):
                             message = "Hello, this is a message from Safe from COVID. Our records indicate that you were just in close contact with a person claiming to be positive for COVID-19. Visit your profile at https://safefromcovid.herokuapp.com to learn more."
-                            message += "\nInformation about contact:\nEmail of other user: " + db.child(request.session['login']).child('email').get().val() + "\nLocation of contact: " + 'https://www.google.com/maps/place/' +  request.POST['lat'] + ',' +  request.POST['long']
-                            email(message, db.child(user).child('email').get().val())
+                            message += "\nInformation about contact:\nEmail of other user: " + db.child(request.session['login']).child('email').get(request.session['auth']).val() + "\nLocation of contact: " + 'https://www.google.com/maps/place/' +  request.POST['lat'] + ',' +  request.POST['long']
+                            email(message, db.child(user).child('email').get(request.session['auth']).val())
 
                     contactmap[user] = str(mylat) + '+' + str(mylong) + '+' + str(time.time()) + '+' + str(ignore)
-                    db.child(request.session['login']).child('contacted').set(contactmap)
+                    db.child(request.session['login']).child('contacted').set(contactmap, request.session['auth'])
 
 
         return HttpResponse()
@@ -287,11 +289,11 @@ def initiateTracker(request):
     chkLogin = getLoginInfo(request)
     if(chkLogin[1] == -1):
         return logout(request)
-    numTracking = db.child('Active').child('numTracking').get().val()
+    numTracking = db.child('Active').child('numTracking').get(request.session['auth']).val()
     if(numTracking >= 75):
         return HttpResponse('excess_users')
 
-    acct = db.child(request.session['login']).get().val()
+    acct = db.child(request.session['login']).get(request.session['auth']).val()
     del acct['email']
     del acct['contacted']
     del acct['positive']
@@ -299,16 +301,17 @@ def initiateTracker(request):
     acct['lat'] = -1
     acct['long'] = -1
     acct['lastUp'] = -1
-    db.child("Active").child(request.session['login']).set(acct)
-    db.child('Active').child('numTracking').set(numTracking + 1)
+    db.child("Active").child(request.session['login']).set(acct, request.session['auth'])
+    db.child('Active').child('numTracking').set(numTracking + 1, request.session['auth'])
     return HttpResponse('success')
 
 def suspendTracker(request):
-    if('login' in request.session):
-        if(request.session['login'] in db.child('Active').get().val()):
-            db.child("Active").child(request.session['login']).remove()
-            numTracking = db.child('Active').child('numTracking').get().val()
-            db.child('Active').child('numTracking').set(numTracking - 1)
+    chk = getLoginInfo()
+    if(chk[0] == 1 and chk[1] == 1):
+        if(request.session['login'] in db.child('Active').get(request.session['auth']).val()):
+            db.child("Active").child(request.session['login']).remove(request.session['auth'])
+            numTracking = db.child('Active').child('numTracking').get(request.session['auth']).val()
+            db.child('Active').child('numTracking').set(numTracking - 1, request.session['auth'])
     return HttpResponse()
 
 
@@ -318,7 +321,7 @@ def email(message, to):
 def getLoginInfo(request):
     res = [0, 0]
     if('login' in request.session):
-        if(checkValidLogin(request.session['login'])):
+        if(checkValidLogin(request.session['login'], request)):
             res[0] = 1
         else:
             return res
@@ -334,9 +337,9 @@ def getLoginInfo(request):
     return res
 
 
-def checkValidLogin(token):
+def checkValidLogin(token, request):
     try:
-        if(db.child(token).get().val() == None):
+        if(db.child(token).get(request.session['auth']).val() == None):
             return False
     except:
         return False
