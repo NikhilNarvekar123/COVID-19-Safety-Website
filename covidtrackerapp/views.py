@@ -121,7 +121,6 @@ def contactInfo(contacted, contactHealth, contactmap, k, request):
 
 
 def newProf(request):
-    suspendTracker(request)
     context = {'navVis' : False, 'alert' : ''}
 
     if(request.method == 'POST'):
@@ -306,7 +305,7 @@ def initiateTracker(request):
     return HttpResponse('success')
 
 def suspendTracker(request):
-    chk = getLoginInfo()
+    chk = getLoginInfo(request)
     if(chk[0] == 1 and chk[1] == 1):
         if(request.session['login'] in db.child('Active').get(request.session['auth']).val()):
             db.child("Active").child(request.session['login']).remove(request.session['auth'])
