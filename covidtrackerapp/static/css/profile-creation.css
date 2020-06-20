@@ -13,20 +13,12 @@
     height: 100%;
     width: 40%;
     border-radius: 10px;
-<<<<<<< HEAD
     margin: calc(20px + (30 - 20) * ((100vw - 400px) / (1600 - 400)));
-=======
-    margin: calc(25px + (30 - 25) * ((100vw - 400px) / (1600 - 400)));
->>>>>>> e2d2dfbc069d2cc5d842baa3a1daa82957406b84
     display: flex;
     justify-content: center;
     align-items: center;
     transition: 0.4s;
-<<<<<<< HEAD
     padding: calc(90px + (100 - 90) * ((100vw - 400px) / (1600 - 400)));
-=======
-    padding: calc(70px + (100 - 70) * ((100vw - 400px) / (1600 - 400)));
->>>>>>> e2d2dfbc069d2cc5d842baa3a1daa82957406b84
 }
 .panel_layout>.jumbotron:nth-child(1):hover {
 
@@ -101,11 +93,7 @@ input[type=submit] {
     border: none;
     color:  #FFFFFF;
     font-family: "Roboto", sans-serif;
-<<<<<<< HEAD
     width: "calc(190px + (204 - 190) * ((100vw - 400px) / (1600 - 400)));";
-=======
-    width: "font-size: calc(190px + (204 - 190) * ((100vw - 400px) / (1600 - 400)));";
->>>>>>> e2d2dfbc069d2cc5d842baa3a1daa82957406b84
     transition: 0.4s;
     font-size: 1vw;
     padding-top: 0.6vw;

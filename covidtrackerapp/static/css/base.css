@@ -192,12 +192,7 @@ input[type=password] {
     font-family: "Roboto", sans-serif;
     width: "font-size: calc(300px + (340 - 300) * ((100vw - 400px) / (1600 - 400)));";
     height: "font-size: calc(22px + (27 - 22) * ((100vw - 400px) / (1600 - 400)));";
-<<<<<<< HEAD
 }input[type=submit] {
-=======
-}
-input[type=submit] {
->>>>>>> e2d2dfbc069d2cc5d842baa3a1daa82957406b84
     margin-bottom: 1.4vw;
     background-color: #7ed957;
     border-radius: 10px;
