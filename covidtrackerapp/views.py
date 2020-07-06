@@ -130,7 +130,7 @@ def newProf(request):
             context['alert'] = 'Password must be at least 6 characters in length'
         else:
             if(request.POST['password-conf'] == psswrd):
-                numUsers = db.child('numUsers').get(request.session['auth']).val()
+                numUsers = db.child('numUsers').get().val()
                 if(numUsers < 5000):
                     try:
                         auth.create_user_with_email_and_password(email, psswrd)
