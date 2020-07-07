@@ -6,13 +6,13 @@ from django.core.mail import send_mail
 import pyrebase, math, time, os
 
 firebaseConfig = {
-    'apiKey': os.environ['API-KEY'],
+    'apiKey': os.environ['API_KEY'],
     'authDomain': "coronaaware-71b77.firebaseapp.com",
-    'databaseURL': "https://" + os.environ['PROJECT-NAME'] + ".firebaseio.com",
-    'projectId': os.environ['PROJECT-NAME'],
-    'storageBucket': os.environ['PROJECT-NAME'] + ".appspot.com",
+    'databaseURL': "https://" + os.environ['PROJECT_NAME'] + ".firebaseio.com",
+    'projectId': os.environ['PROJECT_NAME'],
+    'storageBucket': os.environ['PROJECT_NAME'] + ".appspot.com",
     'messagingSenderId': "38215757364",
-    'appId': os.envrion['APP-ID']
+    'appId': os.envrion['APP_ID']
  }
 
 fb = pyrebase.initialize_app(firebaseConfig)
