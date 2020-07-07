@@ -12,7 +12,7 @@ firebaseConfig = {
     'projectId': os.environ['PROJECT_NAME'],
     'storageBucket': os.environ['PROJECT_NAME'] + ".appspot.com",
     'messagingSenderId': "38215757364",
-    'appId': os.envrion['APP_ID']
+    'appId': os.environ['APP_ID']
  }
 
 fb = pyrebase.initialize_app(firebaseConfig)
