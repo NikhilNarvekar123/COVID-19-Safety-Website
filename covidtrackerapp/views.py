@@ -3,16 +3,16 @@ from django.template import RequestContext
 #from sendgrid import SendGridAPIClient
 #from sendgrid.helpers.mail import Mail
 from django.core.mail import send_mail
-import pyrebase, math, time
+import pyrebase, math, time, os
 
 firebaseConfig = {
-    'apiKey': "AIzaSyAWFTpdWykYSeXZJWUEBb26S69f0WYm2nQ",
+    'apiKey': os.environ['API-KEY'],
     'authDomain': "coronaaware-71b77.firebaseapp.com",
-    'databaseURL': "https://coronaaware-71b77.firebaseio.com",
-    'projectId': "coronaaware-71b77",
-    'storageBucket': "coronaaware-71b77.appspot.com",
+    'databaseURL': "https://" + os.environ['PROJECT-NAME'] + ".firebaseio.com",
+    'projectId': os.environ['PROJECT-NAME'],
+    'storageBucket': os.environ['PROJECT-NAME'] + ".appspot.com",
     'messagingSenderId': "38215757364",
-    'appId': "1:38215757364:web:8762c29d5086e8c08e2461"
+    'appId': os.envrion['APP-ID']
  }
 
 fb = pyrebase.initialize_app(firebaseConfig)
