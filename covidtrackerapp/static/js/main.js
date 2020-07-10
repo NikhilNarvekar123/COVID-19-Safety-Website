@@ -281,3 +281,26 @@ function insertListElem(arr, insert){
     arr.splice(mid+1, 0, insert);
   }
 }
+
+/* Opens Navbar */
+function openNav() {
+  document.getElementById("mySidenav").style.transition = "0.5s";
+  document.getElementById("mySidenav").style.width = "190px";    
+}
+
+/* Closes Navbar by "x" button */
+function closeNav() {
+  document.getElementById("mySidenav").style.transition = "0.5s";
+  document.getElementById("mySidenav").style.width = "0";
+
+}
+
+/* Closes Navbar when window resized (and out of mobile dimensions) */
+function closeNavAuto() {
+  if(window.innerWidth > 767) {
+  document.getElementById("mySidenav").style.transition = "0.5s";
+  document.getElementById("mySidenav").style.width = "0";
+  }
+}
+
+window.onresize = closeNavAuto;
