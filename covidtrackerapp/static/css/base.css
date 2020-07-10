@@ -1,142 +1,232 @@
-body {
-    animation: 10000ms ease-in-out alternate infinite color-change;
+* {
+    box-sizing: border-box;
 }
-@keyframes color-change {
+
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+
+.main-container {
+    min-height: 100vh; /* will cover the 100% of viewport */
+    overflow: hidden;
+    display: block;
+    position: relative;
+    padding-bottom: 100px; /* height of your footer */
+}
+
+body {
+    /* animation: 10000ms ease-in-out alternate infinite color-change; */
+    background-color: #ffffff;
+    font-family: 'Open Sans', sans-serif;
+    /* font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"; */
+    height: 100%;
+    position: relative;
+}
+
+/* @keyframes color-change {
 0% {
-    background-color: #007c91;
+    background-color: #ffffff;
 }
 20% {
-    background-color: #007c91;
+    background-color: #ffffff;
 }
 40% {
-    background-color: #007c91;
+    background-color: #ffffff;
 }
 60% {
-    background-color: #007c91;
+    background-color: #ffffff;
 }
 80% {
-    background-color: #007c91;
+    background-color: #ffffff;
 }
 100% {
-    background-color: #007c91;
+    background-color: #ffffff;
 }
-}
+} */
 
 
-/* Basic Element Base CSS
-   @ make paragraphs flexible
-   @ make paragraphs size adjustable in CSS
-*/
 
 p {
-    color: #ffffff;
-    font-family: 'Roboto', sans-serif;
+    color: #535353;
     display: flex;
-    font-size: calc(10px + (15 - 10) * ((100vw - 400px) / (1600 - 400)));
+    font-size: medium;
+}
+
+#p2 {
+    color: #f5f5f5;
+    display: flex;
+    font-size: medium;
 }
 
 t {
   color: #dddddd;
-  font-family: 'Roboto', sans-serif;
   display: flex;
-}
+  font-size: small;
+}   
+
 h1 {
     color: #ffffff;
-    font-family: 'Roboto', sans-serif;
-    font-size: calc(20px + (35 - 20) * ((100vw - 400px) / (1600 - 400)));
-    font-weight: bold;
+    font-size: xx-large;
+    font-family: 'Cabin', sans-serif;
     text-align: center;
     margin-bottom: 50px;
 }
+
+@media only screen and (max-width: 400px) {
+    h1 {
+        color: #ffffff;
+        font-size: x-large;
+        font-family: 'Cabin', sans-serif;
+        text-align: center;
+        margin-bottom: 50px;
+    } 
+}
+
 h2 {
-    color: #ffffff;
-    font-family: 'Roboto', sans-serif;
-    font-size: calc(14px + (20 - 14) * ((100vw - 400px) / (1600 - 400)));
+    color: #535353;
+    font-size: large;
     text-align: center;
     font-weight: bold;
 }
+
 button {
-    background-color: rgb(68, 175, 241);
+    background-color: #5271ff;
     align-items: center;
     border-radius: 10px;
     border: none;
     color:  #FFFFFF;
-    font-family: "Roboto", sans-serif;
-    width: calc(100px + (136 - 100) * ((100vw - 400px) / (1600 - 400)));
-    height: calc(30px + (55 - 30) * ((100vw - 400px) / (1600 - 400)));
     margin-left: 2vw;
     margin-right: 2vw;
-    transition: 0.4s;
-    font-size: calc(10px + (15 - 10) * ((100vw - 400px) / (1600 - 400)));
+    transition: 0.1s;
+    width: 130px;
+    height: 50px;
+    font-size: medium;
 }
 
 button:hover {
-    width: calc(114px + (150 - 114) * ((100vw - 400px) / (1600 - 400)));
-    height: calc(45px + (70 - 45) * ((100vw - 400px) / (1600 - 400)));
-    background-color:rgb(24, 128, 192);
+    width: 140px;
+    height: 60px;
+    background-color: #3f60fa;
 }
 
 /* Default Info Bubble */
 .jumbotron {
-    background-color: rgb(68, 175, 241);
+    background-color: transparent;
     height: auto;
     width: 100%;
     padding: .3vw;
-    border-radius: 40px;
+    border-radius: 10px;
 }
+
+/* Line Jumbotron */
+.heading>.jumbotron {
+    background-color: #afadad;
+    height: auto;
+    width: 350px;
+    padding: .3vw;
+    border-radius: 5px;
+}
+
+@media only screen and (max-width: 640px) {
+    .heading>.jumbotron {
+        background-color: #afadad;
+        height: auto;
+        width: 100%;
+        padding: .3vw;
+        border-radius: 5px;
+    }  
+}
+
+
+.heading>.jumbotron2 {
+    background-color: #afadad;
+    height: auto;
+    width: 100%;
+    padding: .3vw;
+    border-radius: 5px;
+}
+
 .container {
     display: flex;
     justify-content: center;
     width: 100%;
     padding: 1vw;
     align-items: center;
+    background-color: transparent;
+}
+
+@media only screen and (min-width: 640px) {
+    .bck {
+        background-image: url(untitled.svg) ; 
+        background-size: 100%; 
+        background-repeat: no-repeat;
+    }    
+}
+
+/* special media query */
+@media only screen and (max-width: 639px) {
+    .bck {
+        background-image: url(untitled.svg) ; 
+        background-size: 100% fill;
+        background-repeat: no-repeat;
+    }
 }
 
 /* alert pop-up system */
 .alert {
   padding: 20px;
-  background-color: #f44336;
+  background-color: #5271ff;
   color: white;
-  font-size: calc(10px + (15 - 10) * ((100vw - 400px) / (1600 - 400)));
+  font-size: calc(20px + (30 - 20) * ((100vw - 400px) / (1600 - 400)));
+  width: 400px;
 }
-
-.closebtn {
+ 
+.alert>.closebtn {
   margin-left: 15px;
   color: white;
   font-weight: bold;
   float: right;
   font-size: 22px;
-  line-height: 20px;
   cursor: pointer;
   transition: 0.3s;
+  display: block;
 }
 
-.closebtn:hover {
-  color: black;
+.alert>.closebtn:hover {
+  color: #535353;
+} 
+
+
+
+footer {
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    background-color: #5271ff;
+    display: flex;
+    bottom: 0;
+    width: 100%;
+    height: 50px;     
 }
-
-
-
-
 
 
 
 /* Nav Bar */
 .topnav {
-    background-color: #333;
+    
     overflow: hidden;
     border-radius: 10px;
-    padding-top: 1vw;
     padding-bottom: 1vw;
     padding-left: 1vw;
-    margin-top: 0.5vw;
+    padding-top: 1vw;
 }
 .topnav a {
-    float: left;
+    float: right;
     display: block;
     color: #f2f2f2;
     text-align: center;
-    font-family: 'Roboto', sans-serif;
+
     border-radius: 10px;
     padding-left: 1vw;
     padding-right: 1vw;
@@ -144,6 +234,10 @@ button:hover {
     padding-bottom: 0.7vw;
     text-decoration: none;
     font-size: calc(10px + (15 - 10) * ((100vw - 400px) / (1600 - 400)));
+}
+span {
+    float: right;
+    display: none;
 }
 .topnav a:hover {
     background-color: #ddd;
@@ -154,15 +248,67 @@ button:hover {
     color: white;
 }
 
-
-/* Map (# bc ID not class) */
-#map {
-    width: 100%;
-    height: 400px;
-    border-radius: 10px;
-    background-color: grey;
+/* special media query */
+@media only screen and (max-width: 767px) {
+    span {
+        float: right;
+        display: block;
+    }
+    .topnav {
+        visibility: hidden;
+    }
 }
 
+
+
+/** Nav Bar **/
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    background-color: #5b5b5c;
+    transition: 0.5s;
+    padding-top: 60px;
+    
+}
+.sidenav a {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #f1f1f1;
+    text-align: center;
+    display: block;
+    transition: 0.3s;
+}
+.sidenav a:hover {
+    color: #f1f1f1;
+    background-color: #8f8f8f;
+    border-radius: 15px;
+}
+.sidenav a.active {
+    color: #f1f1f1;
+    background-color: #7ed957;
+    border-radius: 10px;
+}
+.sidenav>.closebtn {
+    padding-right: 15px;
+    padding-bottom: 20px;
+    font-size: 36px;
+    display: none;
+    text-align: right;
+}
+
+
+/* special media query */
+@media only screen and (max-width: 767px) {
+    .sidenav>.closebtn {
+        display: block;
+    }
+}
 
 
 ::-webkit-scrollbar {
@@ -183,14 +329,13 @@ button:hover {
 /* Input */
 input[type=text] {
     margin-bottom: 1.5vw;
-    font-family: "Roboto", sans-serif;
-    width: "font-size: calc(300px + (340 - 300) * ((100vw - 400px) / (1600 - 400)));";
+    width: 100%;
     height: "font-size: calc(22px + (27 - 22) * ((100vw - 400px) / (1600 - 400)));";
+
 }
 input[type=password] {
     margin-bottom: 1.5vw;
-    font-family: "Roboto", sans-serif;
-    width: "font-size: calc(300px + (340 - 300) * ((100vw - 400px) / (1600 - 400)));";
+    width: 100%;
     height: "font-size: calc(22px + (27 - 22) * ((100vw - 400px) / (1600 - 400)));";
 }input[type=submit] {
     margin-bottom: 1.4vw;
@@ -198,12 +343,27 @@ input[type=password] {
     border-radius: 10px;
     border: none;
     color:  #FFFFFF;
-    font-family: "Roboto", sans-serif;
-    width: "font-size: calc(190px + (204 - 190) * ((100vw - 400px) / (1600 - 400)));";
+    width: 300px;
+    height: 50px;
+    font-size: medium;    
     transition: 0.4s;
-    font-size: 1vw;
     padding-top: 0.6vw;
     padding-bottom: 0.6vw;
+}
+@media only screen and (max-width: 400px) {
+    input[type=submit] {
+        margin-bottom: 1.4vw;
+        background-color: #7ed957;
+        border-radius: 10px;
+        border: none;
+        color:  #FFFFFF;
+        width: 250px;
+        height: 50px;
+        font-size: small;    
+        transition: 0.4s;
+        padding-top: 0.6vw;
+        padding-bottom: 0.6vw;
+    }
 }
 input.health{
   background-color: red;
@@ -221,3 +381,44 @@ form {
     text-align: center;
     display: inline-block;
 }
+
+input {
+    border-radius: 2px;
+    border-color: transparent;
+}
+
+
+
+
+/* Social Media Icons */
+.fa {
+    font-size: 15px;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 50%;
+    padding: 7px;
+    margin-left: 10px;
+  }
+  
+
+.fa:hover {
+    transform: scale(1.1,1.1)
+}
+
+/* Facebook */
+.fa-facebook {
+    background: #3B5998;
+    color: white;
+}
+/* Email */
+.fa-envelope {
+    background: #3B5998;
+    color: white;
+}
+
+
+
+
+

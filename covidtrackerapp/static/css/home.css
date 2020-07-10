@@ -1,4 +1,4 @@
-.panel_layout {
+/* .panel_layout {
     width: 100%;
     height: calc(200px + (546 - 200) * ((100vw - 400px) / (1600 - 400)));
     display: flex;
@@ -106,7 +106,7 @@
     font-size: calc(10px + (16 - 10) * ((100vw - 400px) / (1600 - 400)));
     font-weight: lighter;
     transition:0.4s;
-}
+} */
 
 /* Home Page Button Layout */
 .button_layout {
