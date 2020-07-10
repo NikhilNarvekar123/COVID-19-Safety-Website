@@ -1,66 +1,144 @@
+<!DOCTYPE html>
+<html>
 
 <head>
-  {%load static%}
+    
+    <!-- Icon Code--> 
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+
+    <!-- {%load static%} -->
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cabin:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel= "stylesheet" href="base.css">
+    <!-- <link rel= "stylesheet" href="{%static "css/base.css"%}"> -->
+    <link rel= "stylesheet" href="home.css">
+    <!-- <link rel= "stylesheet" href="{%static "css/home.css"%}"> -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Home | Safe from COVID</title>
-    <link rel= "stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
-    <link rel= "stylesheet" href="{%static "css/base.css"%}">
-    <link rel= "stylesheet" href="{%static "css/home.css"%}">
-    <!-- <link rel = "stylesheet" href = "{%static "css/profile-creation.css"%}"> -->
-    <script src="{%static "js/main.js"%}"></script>
+    <script src="main.js"></script>
+    <!-- <script src="{%static "js/main.js"%}"></script> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    
+    
+    <title>Home | Safe from COVID</title>
 
-    {%if navVis%}
-    <div class="topnav">
+    <!-- {%if navVis%} -->
+    <!-- <div class="topnav">
         <a onclick = 'redirect("/home")' id = 'home-btn'>Home</a>
         <a id = 'about-btn' onclick = 'redirect("/about")'>About</a>
         {%if login != 0%}
         <a onclick = 'redirect("/profile")' id = 'profile-nav-btn'>Profile</a>
-        {%if auth == True%}
-        <a id = 'tracker-nav-btn' onclick = 'redirect("/tracker")'>Tracker</a>
-        {%endif%}
+          {%if auth == True%}
+          <a id = 'tracker-nav-btn' onclick = 'redirect("/tracker")'>Tracker</a>
+          {%endif%}
         <a id = 'logout-btn' onclick = 'redirect("/logout")'>Logout</a>
         {%endif%}
+    </div> -->
+    <!-- {%endif%} -->
+    
+    
+    <!-- Nav Bar -->
+    <div class = "bck">
+        
+        <span style="font-size:30px;cursor:pointer ; color:white;" onclick="openNav()">&#9776;</span>
+        
+        <div class="topnav">    
+            <img class="top" src="smalllogo.png" style = "width: 3%; height: 3%;"/>
+            <a id = 'logout-btn' onclick = 'redirect("/logout")'>Logout</a>
+            <a id = 'tracker-nav-btn' onclick = 'redirect("/tracker")'>Tracker</a>
+            <a onclick = 'redirect("/profile")' id = 'profile-nav-btn'>Profile</a>
+            <a id = 'about-btn' onclick = 'redirect("/about")'>About</a>  
+            <a onclick = 'redirect("/home")' id = 'home-btn'>Home</a>
+        </div>
+        
+        <div id="mySidenav" class="sidenav">
+            <a id="navClose" href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <a class = "active" href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="profile.html">Profile</a>
+            <a href="tracker.html">Tracker</a>
+            <a href="promote.html">Logout</a>
+        </div>
+        
+        <h1 style="padding-top: 1vw; padding-bottom: 4vw;">Safe from COVID</h1>
+        
     </div>
-    {%endif%}
+
 </head>
 
 <body onload="document.getElementById('home-btn').className = 'active'">
 
-    <h1 style="padding-top: 1vw;  ">Safe from COVID</h1>
-
-    <!-- intro -->
-    <div class = "container" >
-        <div class = "jumbotron">
-            <h2>Site Info</h2>
-            <p style= "font-size: calc(12px + (17 - 12) * ((100vw - 400px) / (1600 - 400)));">This website has been created as a helpful portal during
-            the COVID-19 global pandemic. By making a profile (below), you can use our contact tracing
-            feature to be alerted when you come in close contact with anyone claiming to be sick or positive for COVID-19. We are open to suggestions for new features
-            and improvements. You can reach us through our Facebook page: </p><a style = "color:#ffff00; font-size: calc(12px + (17 - 12) * ((100vw - 400px) / (1600 - 400)));" href = 'https://www.facebook.com/Safe-from-COVID-103580788051476'>Facebook Page</a>
+    <div class="main-container">
+    
+        <!-- intro -->
+        <div class = "container">
+            <div class = "jumbotron">
+                <div class = "heading">
+                    <h2 class="text-left">COVID Contact Tracing</h2>
+                    <div class = "jumbotron"></div>
+                </div>
+                <p>This website has been created as a helpful portal during
+                the COVID-19 global pandemic. By making a profile (below), you can use our contact tracing
+                feature to be alerted when you come in close contact with anyone claiming to be sick or positive for COVID-19. We are open to suggestions for new features
+                and improvements.
+                </p>
+            </div>
         </div>
-    </div>
 
-    <!-- buttons for sign in -->
-    {%if login == 0%}
-    <div class = "button_layout">
-        <button id = 'create-profile-btn' onclick='redirect("/create-profile")'>Create a Profile</button>
-        <button id = 'sign-in-btn' onclick='redirect("/sign-in")'>Sign In</button>
-    </div>
+        <!-- buttons for sign in
+        {%if login == 0%} -->
+        <div class = "button_layout">
+            <button id = 'create-profile-btn' onclick='redirect("/create-profile")'>Create a Profile</button>
+            <button id = 'sign-in-btn' onclick='redirect("/sign-in")'>Sign In</button>
+        </div>
 
+        <!-- 
+        {%else%}
+        <div class = 'container'>
+            <h1 id = 'greeting'>Welcome, User</h1>
+        </div>
+        {%if auth == False%}
+        <div class = 'container'>
+        <h2>Please verify your account before using contact tracing</h2>
+        </div>
+        {%endif%}
+        {%endif%} -->
 
-    {%else%}
-    <div class = 'container'>
-        <h1 id = 'greeting'>Welcome, User</h1>
+    
+        <div class="container">
+        
+            <div class="alert" style="background-color: #7ed957;">
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                Welcome, User
+            </div>
+            
+            
+            <div class = 'alert' style="background-color: #f44336; display: none;">
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                Please verify your account before using contact tracing
+            </div>    
+    
+        </div>
+    
+
+        <div>
+            <footer>
+                <a id="specialTag" href="https://www.facebook.com/Safe-from-COVID-103580788051476" class="fa fa-facebook"></a>
+                <a id="specialTag" href="https://www.facebook.com/Safe-from-COVID-103580788051476" class="fa fa-envelope"></a>
+            </footer>
+        </div>
+    
     </div>
-      {%if auth == False%}
-      <div class = 'container'>
-      <h2>Please verify your account before using contact tracing</h2>
-      </div>
-      {%endif%}
-    {%endif%}
 
 </body>
+
+</html>

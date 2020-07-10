@@ -1,32 +1,77 @@
+<!DOCTYPE html>
+
+<html>
+
 <head>
-  {%load static%}
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+
+    <!-- {%load static%} -->
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cabin:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel= "stylesheet" href="base.css">
+    <!-- <link rel= "stylesheet" href="{%static "css/base.css"%}"> -->
+    <link rel= "stylesheet" href="profile-creation.css">
+    <!-- <link rel= "stylesheet" href="{%static "css/profile-creation.css"%}"> -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Sign In | Safe from COVID</title>
-    <link rel= "stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
-    <link rel= "stylesheet" href="{%static "css/base.css"%}">
-    <link rel= "stylesheet" href="{%static "css/profile-creation.css"%}">
-
-    <script src="{%static "js/main.js"%}"></script>
     <script src="main.js"></script>
+    <!-- <script src="{%static "js/main.js"%}"></script> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    
+    
+    <title>New Profile | Safe from COVID</title>
 
-    {%if navVis%}
-    <div class="topnav">
+    <!-- {%if navVis%} -->
+    <!-- <div class="topnav">
         <a onclick = 'redirect("/home")' id = 'home-btn'>Home</a>
         <a id = 'about-btn' onclick = 'redirect("/about")'>About</a>
         {%if login != 0%}
         <a onclick = 'redirect("/profile")' id = 'profile-nav-btn'>Profile</a>
-        {%if auth == True%}
-        <a id = 'tracker-nav-btn' onclick = 'redirect("/tracker")'>Tracker</a>
-        {%endif%}
+          {%if auth == True%}
+          <a id = 'tracker-nav-btn' onclick = 'redirect("/tracker")'>Tracker</a>
+          {%endif%}
         <a id = 'logout-btn' onclick = 'redirect("/logout")'>Logout</a>
         {%endif%}
+    </div> -->
+    <!-- {%endif%} -->
+    
+    
+
+    <div class = "bck">
+        
+        <span style="font-size:30px;cursor:pointer ; color:white;" onclick="openNav()">&#9776;</span>
+        
+        <div class="topnav">    
+            <img class="top" src="smalllogo.png" style = "width: 3%; height: 3%;"/>
+            <a id = 'logout-btn' onclick = 'redirect("/logout")'>Logout</a>
+            <a id = 'tracker-nav-btn' onclick = 'redirect("/tracker")'>Tracker</a>
+            <a onclick = 'redirect("/profile")' id = 'profile-nav-btn'>Profile</a>
+            <a id = 'about-btn' onclick = 'redirect("/about")'>About</a>  
+            <a onclick = 'redirect("/home")' id = 'home-btn'>Home</a>
+        </div>
+        
+        <div id="mySidenav" class="sidenav">
+            <a id="navClose" href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="profile.html">Profile</a>
+            <a href="tracker.html">Tracker</a>
+            <a href="promote.html">Logout</a>
+        </div>
+
+        <h1 style="padding-top: 1vw; padding-bottom: 4vw;">Sign In</h1>
+        
     </div>
-    {%endif%}
+
 </head>
 
 
@@ -38,22 +83,46 @@
       alert(alertMsg);
     }
   </script>
-
-  <h2>Sign In</h2>
-
-  <div class = "panel_layout">
+  
+  <div class="main-container">
+    
+    <div class = "container">
       <div class = "jumbotron">
-          <form name = 'input' method = 'post'>
-              {%csrf_token%}
-              <p style= "font-size: calc(12px + (17 - 12) * ((100vw - 400px) / (1600 - 400)));">Enter Email Address:</p>
-              <input type="text" id="address" name = 'address' placeholder="Enter Email">
-              <p style= "font-size: calc(12px + (17 - 12) * ((100vw - 400px) / (1600 - 400)));">Enter Password:</p>
-              <input type="password" id="password1" name = 'password' placeholder="Enter Password"><br>
-              <button onclick = 'document.input.submit()'> Login </button>
-          </form>
+        <div class = "heading">
+            <h2 class="text-left">Log Into Your Profile</h2>
+            <div class = "jumbotron"></div>
+        </div>
       </div>
     </div>
-    <div align = 'center'>
-      <a style= "font-size: calc(12px + (17 - 12) * ((100vw - 400px) / (1600 - 400))); color: #ffff00" href = '/password-reset'>I forgot my password</a>
+
+    
+    <div class="container">
+      <div class = "jumbotron2">
+        <form name = 'input' method = 'post'>
+          <!-- {%csrf_token%} -->
+          <p id="p2">Enter Email Address:</p>
+          <input type="text" id="address" name = 'address' placeholder="Enter Email">
+          <br><br>
+          <p id="p2">Enter Password:</p>
+          <input type="password" id="password1" name = 'password' placeholder="Enter Password">
+          <br><br>
+          <button onclick = 'document.input.submit()'> Login </button>
+          <br><br>
+          <button style= "background-color: rgb(255, 145, 0);" href= '/password-reset'> I forgot my password</button>
+      </form>
+      </div>
     </div>
+        
+    <div>
+        <footer>
+            <a id="specialTag" href="https://www.facebook.com/Safe-from-COVID-103580788051476" class="fa fa-facebook"></a>
+            <a id="specialTag" href="https://www.facebook.com/Safe-from-COVID-103580788051476" class="fa fa-envelope"></a>
+        </footer>
+    </div>
+
+
+  </div>
+
 </body>
+
+</html>

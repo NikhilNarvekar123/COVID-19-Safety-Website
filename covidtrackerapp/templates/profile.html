@@ -1,73 +1,142 @@
+<!DOCTYPE html>
+<html>
+
 <head>
-  {%load static%}
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+
+    <!-- {%load static%} -->
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cabin:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel= "stylesheet" href="base.css">
+    <!-- <link rel= "stylesheet" href="{%static "css/base.css"%}"> -->
+    <link rel= "stylesheet" href="profile-creation.css">
+    <!-- <link rel= "stylesheet" href="{%static "css/profile-creation.css"%}"> -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Profile | Safe from COVID</title>
-    <link rel= "stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
-    <link rel= "stylesheet" href="{%static "css/base.css"%}">
-    <link rel= "stylesheet" href="{%static "css/home.css"%}">
-    <!-- <link rel = "stylesheet" href = "{%static "css/profile-creation.css"%}"> -->
-    <script src="{%static "js/main.js"%}"></script>
+    <script src="main.js"></script>
+    <!-- <script src="{%static "js/main.js"%}"></script> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    
+    
+    <title>Profile | Safe from COVID</title>
 
-    {%if navVis%}
-    <div class="topnav">
+    <!-- {%if navVis%} -->
+    <!-- <div class="topnav">
         <a onclick = 'redirect("/home")' id = 'home-btn'>Home</a>
         <a id = 'about-btn' onclick = 'redirect("/about")'>About</a>
         {%if login != 0%}
         <a onclick = 'redirect("/profile")' id = 'profile-nav-btn'>Profile</a>
-        {%if auth == True%}
-        <a id = 'tracker-nav-btn' onclick = 'redirect("/tracker")'>Tracker</a>
-        {%endif%}
+          {%if auth == True%}
+          <a id = 'tracker-nav-btn' onclick = 'redirect("/tracker")'>Tracker</a>
+          {%endif%}
         <a id = 'logout-btn' onclick = 'redirect("/logout")'>Logout</a>
         {%endif%}
+    </div> -->
+    <!-- {%endif%} -->
+    
+
+    <div class = "bck">
+        
+        <span style="font-size:30px;cursor:pointer ; color:white;" onclick="openNav()">&#9776;</span>
+        
+        <div class="topnav">    
+            <img class="top" src="smalllogo.png" style = "width: 3%; height: 3%;"/>
+            <a id = 'logout-btn' onclick = 'redirect("/logout")'>Logout</a>
+            <a id = 'tracker-nav-btn' onclick = 'redirect("/tracker")'>Tracker</a>
+            <a onclick = 'redirect("/profile")' id = 'profile-nav-btn'>Profile</a>
+            <a id = 'about-btn' onclick = 'redirect("/about")'>About</a>  
+            <a onclick = 'redirect("/home")' id = 'home-btn'>Home</a>
+        </div>
+        
+        <div id="mySidenav" class="sidenav">
+            <a id="navClose" href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a class="active" href="profile.html">Profile</a>
+            <a href="tracker.html">Tracker</a>
+            <a href="promote.html">Logout</a>
+        </div>
+
+        <h1 style="padding-top: 1vw; padding-bottom: 4vw;">Profile</h1>
+        
     </div>
-    {%endif%}
+
 </head>
 
 <body onload = "document.getElementById('profile-nav-btn').className = 'active'; fillList({{contacted}}, {{contacthealth}}); setDeclareOptions('{{sick}}', '{{positive}}');">
 
-  <h1>Profile</h1>
+  <div class="main-container">
 
-  <div class="container">
+    <div class="container">
+      <div class = "jumbotron3">
 
-    <div class = "jumbotron">
+          <p id="p2"> Your Email: {{email}} </p id="p2">
 
-        <p style= "font-size: calc(12px + (17 - 12) * ((100vw - 400px) / (1600 - 400)));">
-            Your Email: {{email}}
-        </p>
-
-        {%if auth == 0%}
-        <t style = 'color:red; font-size: calc(12px + (17 - 12) * ((100vw - 400px) / (1600 - 400)));'>Please check your inbox for a verification email. Your email must be verified before using contact tracing</t>
-
-        {%endif%}
-        <!-- i have no fkin idea wtf this next element is supposed to be LMAO but its messing up the formatting  -->
-        <strong style = "color:white; margin-left:2vw">Let others you came in contact with be aware of your health status:</strong><br><br>
-        <strong id = 'warning' style = "color:red; margin-left:2vw; visibility:hidden;"> </strong><br>
-
-
-
-        <br><br><br>
-        <!-- The forms aren't made for handling multiple normal buttons you have to use submit-type buttons (also i made the other btn
-             visible for testing purposes u can change it back when ur done) okk also theres a problem in scaling the submit btns ill fix later
-        -->
-        <div class = "container" align = 'center'>
-          <form method = 'post' name = 'update-status' onsubmit = 'return checkSubmit()' style = "width: 100%">
-              {%csrf_token%}
-              <input type="submit" class = 'health' name = 'sick-btn' value="I'M SICK"  id = 'left-action-btn' onclick = 'handleClaim("left")' style = 'visibility:hidden; background-color:red; color:white; width: inherit; height:6vw; font-size:12px;'>
-              <br>
-              <input type="submit" class = 'health' name = 'positive-btn' value="I HAVE TESTED POSITIVE FOR COVID-19" id = 'right-action-btn' onclick = 'handleClaim("right")' style = 'background-color:red; color:white; width: inherit; height:6vw; font-size:12px;'>
-          </form>
-        </div>
-
-        <br><br><br>
-        <h2>History of contact with other users:</h2>
-        <ul id = 'contact-list'>
-        </ul>
-
+          <!-- {%if auth == 0%} -->
+          <t style = 'color:red;'>Please check your inbox for a verification email. Your email must be verified before using contact tracing</t>
+      
+      </div>
     </div>
 
+    <div class = "container">
+      <div class = "jumbotron3">
+        
+        <form method = 'post' name = 'update-status' onsubmit = 'return checkSubmit()' style = "width: 100%">
+          
+          <!-- {%endif%} -->
+          <p id="p2">Let others you came in contact with be aware of your health status:</p id="p2">
+          
+          <!-- wtf is this  -->
+          <!-- <strong style = "color:white; margin-left:2vw"></strong><br><br>
+          <strong id = 'warning' style = "color:red; margin-left:2vw; visibility:hidden;"> </strong><br> -->
+          
+          <!-- {%csrf_token%} -->
+          <input type="submit" class = 'health' name = 'sick-btn' value="I'M SICK"  id = 'left-action-btn' onclick = 'handleClaim("left")' style = 'background-color:rgb(255, 145, 0);'>
+          <br>
+          <input type="submit" class = 'health' name = 'positive-btn' value="I HAVE TESTED POSITIVE FOR COVID-19" id = 'right-action-btn' onclick = 'handleClaim("right")' style = 'background-color:red;'>
+        
+        </form>
+      
+      </div>
+    </div>
+
+
+    <br><br><br>
+
+    <div class="container">
+      <div class="jumbotron">
+        
+        <div class = "heading">
+          <h2 class="text-left">History of contact with other users:</h2>
+          <div class = "jumbotron2"></div>
+        </div>
+        
+        <ul id = 'contact-list'>
+        </ul>
+      
+      </div>
+    </div>
+    
+    <div>
+      <footer>
+          <a id="specialTag" href="https://www.facebook.com/Safe-from-COVID-103580788051476" class="fa fa-facebook"></a>
+          <a id="specialTag" href="https://www.facebook.com/Safe-from-COVID-103580788051476" class="fa fa-envelope"></a>
+      </footer>
+    </div>
+
+  </div>
+
+
 </body>
+
+</html>
