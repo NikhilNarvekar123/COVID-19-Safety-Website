@@ -1,0 +1,82 @@
+
+
+form.search {
+    width: 100%;
+}
+
+
+
+form.search>input[type=text] {
+    padding: 10px;
+    font-size: 17px;
+    border: 1px solid grey;
+    float: left;
+    width: 80%;
+    height: 50px;
+    margin: 0px;
+    margin-bottom: 10px;
+    background: #f1f1f1;
+    border-radius: 0px;
+}
+
+form.search>input[type=text]::after {
+    content: "";
+}
+
+form.search>button {
+    float: left;
+    width: 20%;
+    margin: 0px;
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #7ed957;
+    color:  #FFFFFF;
+    font-size: 17px;
+    cursor: pointer;
+    border-radius: 0px;
+}
+
+form.search>button:hover {
+    background-color: #6bb949;
+    height: 50px;
+}
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+#myUL {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+#myUL li .jumbotron {
+    border: 1px solid #5271ff;
+    margin-top: -1px; /* Prevent double borders */
+    padding: 50px;
+}
+#myUL li button {
+    margin-top: 10px;
+}
+#myUL li a {
+
+    background-color: #f6f6f6;
+    padding: 12px;
+    text-decoration: none;
+    font-size: 18px;
+    color: black;
+    display: block;
+}
+#myUL li a:hover:not(.header) {
+    background-color: #eee;
+}
+
