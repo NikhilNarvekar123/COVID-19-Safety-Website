@@ -1,119 +1,84 @@
-/* .panel_layout {
+/* card system */
+.stack-cards {
+    justify-content: center;
     width: 100%;
-    height: calc(200px + (546 - 200) * ((100vw - 400px) / (1600 - 400)));
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: calc(10px + (13 - 10) * ((100vw - 400px) / (1600 - 400)));
+    padding: 0px;
+    margin-bottom: 0px;
+    position: sticky;
 }
-.panel_layout>.jumbotron:nth-child(1) {
-
-    background-image: url('/COVID-19MapAsseet.png');
-    background-size: cover;
-    height: 100%;
-    width: 40%;
-    border-radius: 10px;
-    margin-left: 2px;
-    margin-right: 2px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: 0.4s;
+  
+.stack-cards__item {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 10px;
+    height: 0;
+    padding-bottom: 400px;
+    margin-bottom: 20px;
+    transform-origin: center top;
+    overflow: hidden;
+    opacity: 1;
 }
-.panel_layout>.jumbotron:nth-child(1):hover {
 
-    background-image: url('/COVID-19MapAsseet.png');
-    filter: grayscale(100%);
-    filter: gray;
-    background-size: cover;
-    height: 100%;
-    width: 50%;
-    border-radius: 10px;
-    margin-left: 2px;
-    margin-right: 2px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-
-}
-.panel_layout>.jumbotron:nth-child(2){
-    background-image: url('/COVID-19ActivityAsset.png');
-    background-size: cover;
-    height: 100%;
-    width:40%;
-    margin-left: 2px;
-    margin-right: 2px;
-    border-radius: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: 0.4s;
-
-}
-.panel_layout>.jumbotron:nth-child(2):hover{
-    background-image: url('/COVID-19ActivityAsset.png');
-    background-size: cover;
-    filter: grayscale(100%);
-    filter: gray;
-    height: 100%;
-    width: 50%;
-    margin-left: 2px;
-    margin-right: 2px;
-    border-radius: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-}
-.panel_layout>.jumbotron:nth-child(3){
-    background-image: url('/COVID-19SafetyAsset.png');
-    background-size: cover;
-    height: 100%;
-    width:40%;
-    margin-left: 2px;
-    margin-right: 2px;
-    border-radius: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: 0.4s;
-
-}
-.panel_layout>.jumbotron:nth-child(3):hover{
-    background-image: url('/COVID-19SafetyAsset.png');
-    background-size: cover;
-    filter: grayscale(100%);
-    filter: gray;
-    height: 100%;
-    width: 50%;
-    margin-left: 2px;
-    margin-right: 2px;
-    border-radius: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-}
-.panel_layout>.jumbotron>h2 {
-    color: #ffffff;;
-    font-family: 'Roboto', sans-serif;
-    background-color: rgb(68, 175, 241);
-    padding: 3vw;
-    padding-left: 1vw;
-    padding-right: 1vw;
-    border-radius: 10px;
-    font-size: calc(10px + (16 - 10) * ((100vw - 400px) / (1600 - 400)));
-    font-weight: lighter;
-    transition:0.4s;
-} */
-
-/* Home Page Button Layout */
-.button_layout {
+.stack-cards__item > * {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    height: calc(60px + (68 - 60) * ((100vw - 400px) / (1600 - 400)));
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-bottom: 3vw;
+    height: 100%;
 }
+
+.containerCards {
+    width: 70%;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    position: sticky;
+    max-width: 1100px;
+}
+
+.spacer {
+    height: 38vh;
+}
+
+#panelJumbo {
+    height: 400px; 
+    width: 100%; 
+    margin-right: 10px;
+}
+
+
+/* Home specific containers */
+#homeVersion {
+    justify-content: flex-start;
+    height: 475px;
+    padding-left: 0px;
+    padding-right: 0px;
+    max-width: 1100px;
+}
+
+/* Customized Jumbo for home screen btn */
+#jumboHomeBtn {
+    padding: 0px;
+    justify-content: center;
+    text-align: center;
+    width: 100%; 
+    max-width: 560px; 
+}
+
+/* Customized Jumbo for home screen */
+#jumboHome {
+    background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='10' ry='10' stroke='white' stroke-width='2' stroke-dasharray='120%2c 10' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
+    padding-top: 10px; 
+    padding-left: 10px; 
+    padding-right: 10px;
+    max-width: 560px;
+}
+
+@media only screen and (max-width: 865px) {
+    #jumboHome {
+        max-width: 450px;
+    }
+    #jumboHomeBtn {
+        max-width: 450px;
+    }
+ }

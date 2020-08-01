@@ -4,8 +4,6 @@ form.search {
     width: 100%;
 }
 
-
-
 form.search>input[type=text] {
     padding: 10px;
     font-size: 17px;
@@ -22,36 +20,6 @@ form.search>input[type=text] {
 form.search>input[type=text]::after {
     content: "";
 }
-
-form.search>button {
-    float: left;
-    width: 20%;
-    margin: 0px;
-    margin-bottom: 10px;
-    padding: 10px;
-    background-color: #7ed957;
-    color:  #FFFFFF;
-    font-size: 17px;
-    cursor: pointer;
-    border-radius: 0px;
-}
-
-form.search>button:hover {
-    background-color: #6bb949;
-    height: 50px;
-}
-  
-
-
-
-
-
-
-
-
-
-
-
 
 
 #myUL {
@@ -80,3 +48,12 @@ form.search>button:hover {
     background-color: #eee;
 }
 
+#jumboFlex {
+    width: 80%;
+}
+
+@media only screen and (max-width: 500px) {
+    #jumboFlex {
+        width: 100%;
+    }
+}

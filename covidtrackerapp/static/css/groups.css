@@ -1,0 +1,25 @@
+#myUL {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+#myUL li .jumbotron {
+    border: 1px solid #5271ff;
+    margin-top: -1px; /* Prevent double borders */
+    padding: 50px;
+}
+#myUL li button {
+    margin-top: 10px;
+}
+#myUL li a {
+
+    background-color: #f6f6f6;
+    padding: 12px;
+    text-decoration: none;
+    font-size: 18px;
+    color: black;
+    display: block;
+}
+#myUL li a:hover:not(.header) {
+    background-color: #eee;
+}

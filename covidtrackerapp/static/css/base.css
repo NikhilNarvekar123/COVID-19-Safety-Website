@@ -7,17 +7,18 @@
     box-sizing: border-box;
 }
 
-.main-container {
+.main-box {
     min-height: 100vh; /* will cover the 100% of viewport */
     overflow: hidden;
     display: block;
     position: relative;
     padding-bottom: 100px; /* height of your footer */
+    
 }
 
 body {
     /* animation: 10000ms ease-in-out alternate infinite color-change; */
-    background-color: #ffffff;
+    background-color: #9fcdfb;
     font-family: 'Open Sans', sans-serif;
     /* font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"; */
     height: 100%;
@@ -49,14 +50,19 @@ body {
 
 p {
     color: #535353;
+    color: rgb(82, 166, 251);
     display: flex;
     font-size: medium;
+    font-family: 'Cabin', sans-serif;
 }
 
 #p2 {
-    color: #f5f5f5;
+    color: #ffffff;
+    /* color: rgb(82, 166, 251); */
     display: flex;
-    font-size: medium;
+    font-size: large;
+    font-family: 'Cabin', sans-serif;
+    font-weight: 400;
 }
 
 t {
@@ -67,25 +73,32 @@ t {
 
 h1 {
     color: #ffffff;
-    font-size: xx-large;
+    font-size: 50px;
     font-family: 'Cabin', sans-serif;
     text-align: center;
-    margin-bottom: 50px;
+    display: inline-block; 
+    margin-left: 20px; 
+    margin-top: 20px; 
+    margin-bottom: 12px;
 }
 
 @media only screen and (max-width: 400px) {
     h1 {
         color: #ffffff;
-        font-size: x-large;
+        font-size: large;
         font-family: 'Cabin', sans-serif;
         text-align: center;
-        margin-bottom: 50px;
+        display: inline-block; 
+        margin-left: 20px; 
+        margin-top: 20px; 
+        margin-bottom: 12px;
     } 
 }
 
 h2 {
-    color: #535353;
-    font-size: large;
+    color: #ffffff;
+    font-size: x-large;
+    font-family: 'Cabin', sans-serif;
     text-align: center;
     font-weight: bold;
 }
@@ -94,6 +107,8 @@ button {
     background-color: #5271ff;
     align-items: center;
     border-radius: 10px;
+    
+    font-family: 'Cabin', sans-serif;
     border: none;
     color:  #FFFFFF;
     margin-left: 2vw;
@@ -117,6 +132,9 @@ button:hover {
     width: 100%;
     padding: .3vw;
     border-radius: 10px;
+    background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='10' ry='10' stroke='white' stroke-width='2' stroke-dasharray='120%2c 10' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
+
+
 }
 
 /* Line Jumbotron */
@@ -126,6 +144,7 @@ button:hover {
     width: 350px;
     padding: .3vw;
     border-radius: 5px;
+    float: right;
 }
 
 @media only screen and (max-width: 640px) {
@@ -151,27 +170,64 @@ button:hover {
     display: flex;
     justify-content: center;
     width: 100%;
-    padding: 1vw;
+    max-width: 2000px;
     align-items: center;
     background-color: transparent;
+    
 }
+
+/* .container {
+    width: 100%;
+    max-width: 1200px;
+    padding: 0 60px;
+    margin: 0 auto;
+} */
 
 @media only screen and (min-width: 640px) {
     .bck {
-        background-image: url(untitled.svg) ; 
-        background-size: 100%; 
-        background-repeat: no-repeat;
+        /* background-color: rgb(159, 205, 251); */
+        background-color: #79c98e;
+        background-color: #ececf8;
+        background-color: #5271ff;
+        /* background-color: #0d3b60;  */
+        /* background-color: rgb(91, 110, 198); */
+        
     }    
 }
 
 /* special media query */
 @media only screen and (max-width: 639px) {
     .bck {
-        background-image: url(untitled.svg) ; 
-        background-size: 100% fill;
-        background-repeat: no-repeat;
-    }
+        /* background-color: rgb(159, 205, 251); */
+        background-color: #79c98e;
+        background-color: #ececf8;
+        background-color: #5271ff;
+        /* background-color: #0d3b60;  */
+        /* background-color: rgb(91, 110, 198); */
+        
+    }    
 }
+
+
+.logo {
+    display: inline-block;
+    width: 250px;
+    height: 75px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+@media only screen and (max-width: 639px) {
+    .logo {
+        display: inline-block;
+        width: 250px;
+        height: 75px;
+        margin-left: 10px;
+        margin-bottom: 10px;
+    } 
+}
+
 
 /* alert pop-up system */
 .alert {
@@ -203,7 +259,7 @@ footer {
     align-items: center;
     justify-content: center;
     position: absolute;
-    background-color: #5271ff;
+    background-color: rgb(23, 23, 104);
     display: flex;
     bottom: 0;
     width: 100%;
@@ -214,34 +270,39 @@ footer {
 
 /* Nav Bar */
 .topnav {
-    
     overflow: hidden;
     border-radius: 10px;
-    padding-bottom: 1vw;
-    padding-left: 1vw;
-    padding-top: 1vw;
+    padding-bottom: 10px;
+    
+    padding-left: 10px;
+    padding-top: 10px;
+    display: block; 
+    float: right; 
+    margin-top: 15px;
+    color: #f2f2f2;
 }
 .topnav a {
     float: right;
     display: block;
+    font-family: 'Cabin', sans-serif;
+    font-weight: 200;
     color: #f2f2f2;
     text-align: center;
-
     border-radius: 10px;
     padding-left: 1vw;
     padding-right: 1vw;
     padding-top: 0.7vw;
     padding-bottom: 0.7vw;
     text-decoration: none;
-    font-size: calc(10px + (15 - 10) * ((100vw - 400px) / (1600 - 400)));
+    font-size: 15px;
 }
 span {
     float: right;
     display: none;
 }
 .topnav a:hover {
-    background-color: #ddd;
-    color: black;
+    background-color: #004aad;
+    color: f2f2f2;
 }
 .topnav a.active {
     background-color: #7ed957;
@@ -255,7 +316,7 @@ span {
         display: block;
     }
     .topnav {
-        visibility: hidden;
+        display: none;
     }
 }
 
@@ -331,7 +392,6 @@ input[type=text] {
     margin-bottom: 1.5vw;
     width: 100%;
     height: "font-size: calc(22px + (27 - 22) * ((100vw - 400px) / (1600 - 400)));";
-
 }
 input[type=password] {
     margin-bottom: 1.5vw;
@@ -400,9 +460,8 @@ input {
     border-radius: 50%;
     padding: 7px;
     margin-left: 10px;
-  }
+}
   
-
 .fa:hover {
     transform: scale(1.1,1.1)
 }
@@ -422,3 +481,10 @@ input {
 
 
 
+.button_layout {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
