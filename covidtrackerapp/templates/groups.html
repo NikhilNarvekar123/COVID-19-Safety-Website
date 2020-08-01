@@ -21,6 +21,8 @@
     <!-- <link rel= "stylesheet" href="{%static "css/new.css"%}"> -->
     <link rel= "stylesheet" href="profile-creation.css">
     <!-- <link rel= "stylesheet" href="{%static "css/profile-creation.css"%}"> -->
+    <link rel= "stylesheet" href="groups.css">
+    <!-- <link rel= "stylesheet" href="{%static "css/profile-creation.css"%}"> -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -30,7 +32,7 @@
     <!-- <script src="{%static "js/main.js"%}"></script> -->
 
     
-    <title>Profile | Safe from COVID</title>
+    <title>Groups | Safe from COVID</title>
 
     <!-- {%if navVis%} -->
     <!-- <div class="topnav">
@@ -64,7 +66,7 @@
           <a id="closeSideNavBtn" style="padding-bottom: 50px;"><span id="menuBtn2" style="font-size:30px;cursor:pointer ; color:white; display: none;" onclick="closeNav()">&#9776;</span></a>
           <a href="index.html">Home</a>
           <a href="about.html">About</a>
-          <a class = "active" href="profile.html">Profile</a>
+          <a href="profile.html">Profile</a>
           <a href="tracker.html">Tracker</a>
           <a href="promote.html">Logout</a>
       </div>
@@ -78,7 +80,7 @@
   <div class="main-box">
 
     <div class="container" id="headingContainer">    
-      <h1 class="text-left"><u>Profile</u></h1>
+      <h1 class="text-left"><u>Groups</u></h1>
     </div>
 
     <br><br>
@@ -86,27 +88,20 @@
     <div class="container">
       <div class = "jumbotron" id="profileJumbo">
           <!-- PUT THE INFO FOR ACCOUNT BELOW LABEL -->
-          <p id="p2"> Your Email: </p>
-          <p id="p2"> {{email}} </p>
-          <p id="p2"> Details: </p>
+          <p id="p2"> Group Name: </p>
           <p id="p2"> -- </p>
-          <p id="p2"> Status: </p>
+          <p id="p2"> Group Type: </p>
           <p id="p2"> -- </p>
-          <p id="p2"> Groups: </p>
+          <p id="p2"> Overall Status: </p>
           <p id="p2"> -- </p>
+          <br>
           <div class="container">
-            <div class="jumbotron" id="jumboFlex">
-            <button id="submitButton" style="width: 200px;"> Groups </button>
-            <br><br>
-            <button data-toggle="modal" data-target="#status" id="submitButton" style="width: 200px;"> Change/Update Status </button>
-            <br><br>
-            <button data-toggle="modal" data-target="#reset" id="submitButton" style="width: 200px;"> Reset Password </button>
-            <br><br>
-          </div>
-          </div>
-          <!-- {%if auth == 0%} -->
-          <div class="container">
-            <t>Please check your inbox for a verification email. Your email must be verified before using contact tracing!</t>
+            <div class="container" id="leftAlignContainer" style="padding: 0px;">
+                <button data-toggle="modal" data-target="#member" id="submitButton"> Member List </button>
+            </div>
+            <div class="container" id="rightAlignContainer" style="padding: 0px;">
+                <button id="submitButton" style="background-color: red;"> Leave Group </button>
+            </div>
           </div>
       </div>
     </div>
@@ -116,51 +111,62 @@
     <div class="container">
       <div class="jumbotron" id="profileJumbo">
         
-        <h2 class="text-left">History of contact with other users:</h2>
-        
-        <ul id = 'contact-list'>
-        </ul>
-      
+        <h2 class="text-left">Create New Group:</h2>
+        <br>
+        <div class="container">
+            <form name = 'input' method = 'post' style="width: 70%;"> 
+                <!-- {%csrf_token%} -->
+                <p id="p2"class="text-left">Enter Group Name:</p>
+                <input type="text" id="address" name = 'address' placeholder="Enter Email">
+                <br><br>
+                <p id="p2">Enter Type:</p>
+                <input type="password" id="password1" name = 'password' placeholder="Enter Password">
+                <br><br>
+                <p id="p2">Share Link:</p>
+                <br>
+                <button id="submitButton" onclick = 'document.input.submit()'> Create Group </button>
+            </form>
+        </div>
       </div>
     </div>
 
     <br> 
+    
 
-    <div class="container">
-      <div class="container" id="leftAlignContainer" style="padding: 0px;">
-        <button style="margin-left: 0px;">Log Out</button>
-      </div>
-      <div class="container" id="rightAlignContainer" style="padding: 0px;">
-        <button style="background-color: red; margin-right: 0px;">Delete Account</button>
-      </div>
-    </div>
 
     <!-- Pop up status modal -->
-    <div class="modal fade" id="status" role="dialog">
+    <div class="modal fade" id="member" role="dialog">
       <div class="modal-dialog">
           <div class="modal-content">
               
             <div class="modal-header">
-                  <h2 class="modal-title" style="color:black;">Change/Update Status</h2>
+                  <h2 class="modal-title" style="color:black;">Member List</h2>
                   <button style = "margin: 0; width: 30px; height: 30px; padding: 0px;" type="button" class="close" data-dismiss="modal">&times;</button>
               </div>
 
               <div class="modal-body">
               <div class="jumbotron" id="jumboFlex">
-                <form method = 'post' name = 'update-status' onsubmit = 'return checkSubmit()' style = "width: 100%">
-          
-                  <p style="color: black;" class="text-left">Let others you came in contact with be aware of your health status:</p>
-                  
-                  <!-- wtf is this  -->
-                  <!-- <strong style = "color:white; margin-left:2vw"></strong><br><br>
-                  <strong id = 'warning' style = "color:red; margin-left:2vw; visibility:hidden;"> </strong><br> -->
-                  
-                  <!-- {%csrf_token%} -->
-                  <input type="submit" class = 'health' name = 'sick-btn' value="I'M SICK"  id = 'left-action-btn' onclick = 'handleClaim("left")' style = 'background-color:rgb(255, 145, 0);'>
-                  <br>
-                  <input type="submit" class = 'health' name = 'positive-btn' value="I HAVE TESTED POSITIVE FOR COVID-19" id = 'right-action-btn' onclick = 'handleClaim("right")' style = 'background-color:red;'>      
-        
-                </form>
+                <ul id="myUL">
+                    <li>
+                        <div class= "jumbotron" style="background-color: #5271ff;">
+                            <h2 class="text-left">Email:</h2>
+                            <p>Status:</p>
+                        </jumbotron>
+                    </li>
+                    <li>
+                        <div class= "jumbotron" style="background-color: #5271ff;">
+                            <h2 class="text-left">Email:</h2>
+                            <p>Status:</p>
+                        </jumbotron>
+                    </li>
+                    <li>
+                        <div class= "jumbotron" style="background-color: #5271ff;">
+                            <h2 class="text-left">Email:</h2>
+                            <p>Status:</p>
+                        </jumbotron>
+                    </li>
+
+                </ul>
               </div>
               </div>
           
@@ -168,31 +174,7 @@
       </div>
     </div>
     
-    <div class="modal fade" id="reset" role="dialog">
-      <div class="modal-dialog">
-          <div class="modal-content">
-              
-            <div class="modal-header">
-                  <h2 class="modal-title" style="color:black;">Reset Password</h2>
-                  <button style = "margin: 0; width: 30px; height: 30px; padding: 0px;" type="button" class="close" data-dismiss="modal">&times;</button>
-              </div>
-
-              <div class="modal-body">
-              <div class="jumbotron" id="jumboFlex">
-                <form name = 'input' method = 'post' style="width: 80%;"> 
-                  <!-- {%csrf_token%} -->
-                  <p style="color: black;" class="text-left">Enter Email Address:</p>
-                  <input type="text" style="outline-style: solid;" id="address" name = 'address' placeholder="Enter Email">
-                  <br><br>
-                  <button id="submitButton" style="width: 100%;" onclick = 'document.input.submit()'> Send Password Reset Email </button>
-                </form>
-              </div>
-              </div>
-          
-          </div>
-      </div>
-    </div>
-
+ 
     <div>
       <footer>
           <a id="specialTag" href="https://www.facebook.com/Safe-from-COVID-103580788051476" class="fa fa-facebook"></a>

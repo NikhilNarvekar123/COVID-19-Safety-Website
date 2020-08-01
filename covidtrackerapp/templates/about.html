@@ -18,14 +18,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Cabin:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel= "stylesheet" href="base.css">
-    <!-- <link rel= "stylesheet" href="{%static "css/base.css"%}"> -->
+    <link rel= "stylesheet" href="new.css">
+    <!-- <link rel= "stylesheet" href="{%static "css/new.css"%}"> -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="main.js"></script>
-    <!-- <script src="{%static "js/main.js"%}"></script> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    
+    <script src="main.js"></script>
+    <!-- <script src="{%static "js/main.js"%}"></script> -->    
     
     <title>About | Safe from COVID</title>
 
@@ -43,13 +42,12 @@
     </div> -->
     <!-- {%endif%} -->
     
-    <!-- Nav Bar -->
-    <div class = "bck">
+    <div class="headingBanner">
         
-      <span style="font-size:30px;cursor:pointer ; color:white;" onclick="openNav()">&#9776;</span>
-      
+      <span id="menuBtn1" style="font-size:30px;cursor:pointer ; color:white;" onclick="openNav()">&#9776;</span>
+      <img class="logo" src="newLogo.png"/>
+           
       <div class="topnav">    
-          <img class="top" src="smalllogo.png" style = "width: 3%; height: 3%;"/>
           <a id = 'logout-btn' onclick = 'redirect("/logout")'>Logout</a>
           <a id = 'tracker-nav-btn' onclick = 'redirect("/tracker")'>Tracker</a>
           <a onclick = 'redirect("/profile")' id = 'profile-nav-btn'>Profile</a>
@@ -58,15 +56,13 @@
       </div>
       
       <div id="mySidenav" class="sidenav">
-          <a id="navClose" href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+          <a id="closeSideNavBtn" style="padding-bottom: 50px;"><span id="menuBtn2" style="font-size:30px;cursor:pointer ; color:white; display: none;" onclick="closeNav()">&#9776;</span></a>
           <a href="index.html">Home</a>
           <a class = "active" href="about.html">About</a>
           <a href="profile.html">Profile</a>
           <a href="tracker.html">Tracker</a>
           <a href="promote.html">Logout</a>
       </div>
-
-      <h1 style="padding-top: 1vw; padding-bottom: 4vw;">About</h1>
       
     </div>
 
@@ -74,48 +70,49 @@
 
 <body onload = 'document.getElementById("about-btn").className = "active"'>
 
-  <div class="main-container">
+  <div class="main-box">
 
-    <div class="container"> 
+    <div class="container" id="headingContainer">    
+      <h1 class="text-left"><u>About</u></h1>
+    </div>
 
-      <div class = "jumbotron">
+    <br><br>
 
-        <div class = "heading">
-          <h2 class="text-left">Site Information</h2>
-          <div class = "jumbotron"></div>
-        </div>
-        
-        <p>
-          This site was made as an early-warning system to inform users if they have been in contact
-          with someone feeling ill or tested positive for COVID-19. We offer a tracking feature that
-          uses GPS data from a users' devices to determine which users have come in close contact with eachother.
-          Once a user claims they are unwell or positive, other users who have been in close contact with them are notified
-          via email.
-        </p>
-
-        <div class = "heading">
-          <h2 class="text-left" >Features (V1.2)</h2>
-          <div class = "jumbotron"></div>
-        </div>
+    <div class="jumbotron" id="dashedJumbo">
       
-        
-        <p>
-          PROFILE: View your account details and history of close contacts. You are also provided with options to update
-          your health status (sick/positive for COVID-19)
-          <br></br>
-          TRACKER: Once you have logged in and verified your email, you can use the tracker to monitor your location and record close contacts with other users in the area.
-          If a user you have come in close contact with claims they are sick/positive, you will receive an email notification with that individual's email and location of contact.
-          <br></br>
-          There are many factors involved in the spread of the disease,
-          and due to given inaccuracy of GPS location data it is possible that you haven't actually come into
-          contact with a high-risk/positive individual even when the service informs you so. We collect and verify user emails in order to provide
-          contact information for a sick person to those who came in close contact with that individual.
-          This increases accountability and minimizes the likelihood of abuse.
-          <br></br>
-          DISCLAIMER: THIS WEBSITE IS NOT INTENDED AS A REPLACEMENT FOR MEDICAL DIAGNOSIS. PLEASE CONSULT A DOCTOR WITH ANY HEALTH CONCERNS
-        </p>
-        
-      </div>
+      <h2 class="text-left"><u>Site Information</u></h2>
+      <br>
+      <p class="text-justify">
+        This site was made as an early-warning system to inform users if they have come in contact
+        with someone who has developed symptoms or tested postive for COVID-19. We offer a tracking feature that
+        uses GPS data from a user's device(s) to determine if they may have been exposed, and if so, when and where.
+        Once a user claims they are unwell or have tested positive, other users who have been in close contact with them are notified
+        via email. All user data will be kept anonymous unless both users opt in (in which case their email addresses will be shared).
+      </p>
+    
+    </div>
+    
+    <div class="jumbotron" id="dashedJumbo">
+      
+      <h2 class="text-left"><u>Features (V1.2)</u></h2>
+      <br>
+      <p class="text-justify">
+        PROFILE: View your account details and history of potential exposures. You are also provided with options to update
+        your health status and indicate whether you are sick/positive for COVID-19.
+        <br></br>
+        TRACKER: Once you have logged in and verified your email, you can use the tracker to monitor your location and record potential exposures with other users in the area.
+        If a user you have come in close contact with later reports they have developed symptoms or have tested positive, you will receive an email notification with that individual's email (if both users have opted in), as well as location and time of contact.
+        <br></br>
+        BUSINESSES: Any visitor to our service can use our business tab to quickly find hours of operation for venues near their area and see how many other users were interested in visiting the same location. This allows users to make informed choices when they need to travel outside their homes.
+        <br></br>
+        There are many factors involved in the spread of the disease,
+        and due to given inaccuracy of GPS location data it is possible that you haven't actually come into
+        contact with a high-risk/positive individual even when the service informs you so. We collect and verify user emails in order to provide
+        contact information for a sick person to those who came in close contact with that individual.
+        This increases accountability and minimizes the likelihood of abuse.
+        <br></br>
+        DISCLAIMER: THIS WEBSITE IS NOT INTENDED AS A REPLACEMENT FOR MEDICAL DIAGNOSIS. PLEASE CONSULT A DOCTOR WITH ANY HEALTH CONCERNS
+      </p>
 
     </div>
     
@@ -129,5 +126,4 @@
   </div>
 
 </body>
-
 </html>

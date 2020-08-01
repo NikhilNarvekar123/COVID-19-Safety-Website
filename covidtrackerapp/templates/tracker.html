@@ -16,16 +16,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Cabin:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel= "stylesheet" href="base.css">
-    <!-- <link rel= "stylesheet" href="{%static "css/base.css"%}"> -->
+    <link rel= "stylesheet" href="new.css">
+    <!-- <link rel= "stylesheet" href="{%static "css/new.css"%}"> -->
     <link rel= "stylesheet" href="profile-creation.css">
     <!-- <link rel= "stylesheet" href="{%static "css/profile-creation.css"%}"> -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="main.js"></script>
     <!-- <script src="{%static "js/main.js"%}"></script> -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    
     
     <title>New Profile | Safe from COVID</title>
 
@@ -45,12 +45,12 @@
     
     
 
-    <div class = "bck">
+    <div class="headingBanner">
         
-        <span style="font-size:30px;cursor:pointer ; color:white;" onclick="openNav()">&#9776;</span>
-        
+        <span id="menuBtn1" style="font-size:30px;cursor:pointer ; color:white;" onclick="openNav()">&#9776;</span>
+        <img class="logo" src="newLogo.png"/>
+             
         <div class="topnav">    
-            <img class="top" src="smalllogo.png" style = "width: 3%; height: 3%;"/>
             <a id = 'logout-btn' onclick = 'redirect("/logout")'>Logout</a>
             <a id = 'tracker-nav-btn' onclick = 'redirect("/tracker")'>Tracker</a>
             <a onclick = 'redirect("/profile")' id = 'profile-nav-btn'>Profile</a>
@@ -59,15 +59,13 @@
         </div>
         
         <div id="mySidenav" class="sidenav">
-            <a id="navClose" href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <a id="closeSideNavBtn" style="padding-bottom: 50px;"><span id="menuBtn2" style="font-size:30px;cursor:pointer ; color:white; display: none;" onclick="closeNav()">&#9776;</span></a>
             <a href="index.html">Home</a>
             <a href="about.html">About</a>
             <a href="profile.html">Profile</a>
             <a class="active" href="tracker.html">Tracker</a>
             <a href="promote.html">Logout</a>
         </div>
-
-        <h1 style="padding-top: 1vw; padding-bottom: 4vw;">Tracker</h1>
         
     </div>
 
@@ -75,20 +73,16 @@
 
 <body onload = "document.getElementById('tracker-nav-btn').className = 'active'">
     
-    <div class="main-container">
+    <div class="main-box">
 
-        <div class = "container">
-            <div class = "jumbotron">
-                <div class = "heading">
-                    <h2 class="text-left">Are you at risk?</h2>
-                    <div class = "jumbotron"></div>
-                </div>
-            </div>
+        <div class="container" id="headingContainer">    
+            <h1 class="text-left"><u>Log In</u></h1>
         </div>
 
-
+        <br><br>
+        
         <div class = "container">
-            <div class = "jumbotron">
+            <div class = "jumbotron" id="profileJumbo">
                 <p>
                     NOTE: If you have not done so, please click the "About" button above to read more before using the tracker.
                 </p>
@@ -99,12 +93,18 @@
                 </p>
             </div>
         </div>
-
-        <div class = "container">
-            <div class="jumbotron2" style="background-color: transparent;">
-                <button onclick = 'toggleTracker()' id = 'track-btn'>START TRACKING</button>
+        
+        <br>
+        
+        <div class="container">
+            <div class="container" id="leftAlignContainer" style="padding: 0px;">
+              <button style="margin-left: 0px;" onclick = 'toggleTracker()' id = 'track-btn'>START TRACKING</button>
+            </div>
+            <div class="container" id="rightAlignContainer" style="padding: 0px;">
+              <button style="margin-right: 0px;">Profile</button>
             </div>
         </div>
+
 
         <div>
             <footer>

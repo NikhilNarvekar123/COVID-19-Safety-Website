@@ -18,8 +18,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Cabin:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel= "stylesheet" href="base.css">
-    <!-- <link rel= "stylesheet" href="{%static "css/base.css"%}"> -->
+    <link rel= "stylesheet" href="new.css">
+    <!-- <link rel= "stylesheet" href="{%static "css/new.css"%}"> -->
     <link rel= "stylesheet" href="search.css">
     <!-- <link rel= "stylesheet" href="{%static "css/search.css"%}"> -->
     <meta charset="UTF-8">
@@ -46,13 +46,12 @@
     <!-- {%endif%} -->
     
     
-    <!-- Nav Bar -->
-    <div class = "bck">
+    <div class="headingBanner">
         
-        <span style="font-size:30px;cursor:pointer ; color:white;" onclick="openNav()">&#9776;</span>
-        
+        <span id="menuBtn1" style="font-size:30px;cursor:pointer ; color:white;" onclick="openNav()">&#9776;</span>
+        <img class="logo" src="newLogo.png"/>
+             
         <div class="topnav">    
-            <img class="top" src="smalllogo.png" style = "width: 3%; height: 3%;"/>
             <a id = 'logout-btn' onclick = 'redirect("/logout")'>Logout</a>
             <a id = 'tracker-nav-btn' onclick = 'redirect("/tracker")'>Tracker</a>
             <a onclick = 'redirect("/profile")' id = 'profile-nav-btn'>Profile</a>
@@ -61,58 +60,66 @@
         </div>
         
         <div id="mySidenav" class="sidenav">
-            <a id="navClose" href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-            <a class = "active" href="index.html">Home</a>
+            <a id="closeSideNavBtn" style="padding-bottom: 50px;"><span id="menuBtn2" style="font-size:30px;cursor:pointer ; color:white; display: none;" onclick="closeNav()">&#9776;</span></a>
+            <a href="index.html">Home</a>
             <a href="about.html">About</a>
             <a href="profile.html">Profile</a>
             <a href="tracker.html">Tracker</a>
             <a href="promote.html">Logout</a>
         </div>
         
-        <h1 style="padding-top: 1vw; padding-bottom: 4vw;">Search for Open Businesses/Restaurants</h1>
-        
-    </div>
+      </div>
 
 </head>
 
 <body onload="document.getElementById('home-btn').className = 'active'">
 
-    <div class="main-container">
+    <div class="main-box">
     
+        <div class="container" id="headingContainer">    
+            <h1 class="text-left"><u>Search</u></h1>
+        </div>
+
         <!-- intro -->
         <div class = "container">
-            <div class = "jumbotron">
-                <div class = "heading">
-                    <h2 class="text-left">Search</h2>
-                    <div class = "jumbotron"></div>
-                </div>
+            <div class = "jumbotron" id="dashedJumbo">
                 <p>Search for open businesses and restaurants in your area using the tool below. Once you find your desired business and location (and you plan on visiting),
                     please select the visiting button to let others know how popular a certain location is.
                 </p>
             </div>
         </div>
 
-
+        <br><br>
         <div class = "container">
-            <div class = "jumbotron">
+
+            <div class = "jumbotron" id="jumboFlex">
                 
                 
-                <form class="search" >
-                    <input id="myInput" type="text" onkeyup="search()" placeholder="Search for a business or restaurant..." title="Search for a resource...">
-                    <button type="submit"><i class="fa fa-search"></i></button>
+                <form class="search">
+                    <input style="width: 100%;" id="myInput" type="text" onkeyup="search()" placeholder="Search for a business or restaurant..." title="Search for a resource...">
                 </form>
 
-                <form class="search" >
-                    <input id="myInput" type="text" onkeyup="search()" placeholder="Search for a city or location..." title="Search for a resource...">
-                    <button type="submit"><i class="fa fa-search"></i></button>
+                <form class="search">
+                    <input style="width: 100%;" id="myInput" type="text" onkeyup="search()" placeholder="Search for a city or location..." title="Search for a resource...">
                 </form>
                         
+                <div class="container" style="padding-right: 0px; padding-left: 0px;">
+                    <div class="container" id="leftAlignContainer" style="padding: 0px;">
+                        <button type="submit" style="margin-left: 0px;"><i class="fa fa-search"></i></button>
+                    </div>
+                    <div class="container" id="rightAlignContainer" style="padding: 0px;">
+                        <button type="submit" style="margin-right: 0px;"><i class="fa fa-times"></i></button>
+                    </div>
+                </div>
+
+                
+
                 <br><br><br><br>
 
                 <!-- list of links-->
                 <ul id="myUL">
                     <li>
-                        <div class= "jumbotron">
+                        <div class= "jumbotron" style="background-color: #5271ff;">
                             <h2>Ashank's Fresh Market</h2>
                             <p>10:00 AM to 4:00 PM</p>
                             <p>8205 Ashby Ct., Plano, TX</p>
@@ -124,7 +131,7 @@
                         </jumbotron>
                     </li>
                     <li>
-                        <div class= "jumbotron">
+                        <div class= "jumbotron"  style="background-color: #5271ff;">
                             <h2>Ashank's Fresh Market</h2>
                             <p>10:00 AM to 4:00 PM</p>
                             <p>8205 Ashby Ct., Plano, TX</p>
@@ -136,7 +143,7 @@
                         </jumbotron>
                     </li>
                     <li>
-                        <div class= "jumbotron">
+                        <div class= "jumbotron"  style="background-color: #5271ff;">
                             <h2>Ashank's Fresh Market</h2>
                             <p>10:00 AM to 4:00 PM</p>
                             <p>8205 Ashby Ct., Plano, TX</p>
@@ -148,7 +155,7 @@
                         </jumbotron>
                     </li>
                     <li>
-                        <div class= "jumbotron">
+                        <div class= "jumbotron"  style="background-color: #5271ff;">
                             <h2>Ashank's Fresh Market</h2>
                             <p>10:00 AM to 4:00 PM</p>
                             <p>8205 Ashby Ct., Plano, TX</p>

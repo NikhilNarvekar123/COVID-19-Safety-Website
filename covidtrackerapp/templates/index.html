@@ -18,17 +18,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Cabin:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel= "stylesheet" href="base.css">
-    <!-- <link rel= "stylesheet" href="{%static "css/base.css"%}"> -->
+    <link rel= "stylesheet" href="new.css">
+    <!-- <link rel= "stylesheet" href="{%static "css/new.css"%}"> -->
     <link rel= "stylesheet" href="home.css">
     <!-- <link rel= "stylesheet" href="{%static "css/home.css"%}"> -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="main.js"></script>
     <!-- <script src="{%static "js/main.js"%}"></script> -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    
-    
+
     <title>Home | Safe from COVID</title>
 
     <!-- {%if navVis%} -->
@@ -47,12 +46,12 @@
     
     
     <!-- Nav Bar -->
-    <div class = "bck">
+    <div class="headingBanner">
         
-        <span style="font-size:30px;cursor:pointer ; color:white;" onclick="openNav()">&#9776;</span>
-        
+        <span id="menuBtn1" style="font-size:30px;cursor:pointer ; color:white;" onclick="openNav()">&#9776;</span>
+        <img class="logo" src="newLogo.png"/>
+             
         <div class="topnav">    
-            <img class="top" src="smalllogo.png" style = "width: 3%; height: 3%;"/>
             <a id = 'logout-btn' onclick = 'redirect("/logout")'>Logout</a>
             <a id = 'tracker-nav-btn' onclick = 'redirect("/tracker")'>Tracker</a>
             <a onclick = 'redirect("/profile")' id = 'profile-nav-btn'>Profile</a>
@@ -61,7 +60,7 @@
         </div>
         
         <div id="mySidenav" class="sidenav">
-            <a id="navClose" href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <a id="closeSideNavBtn" style="padding-bottom: 50px;"><span id="menuBtn2" style="font-size:30px;cursor:pointer ; color:white; display: none;" onclick="closeNav()">&#9776;</span></a>
             <a class = "active" href="index.html">Home</a>
             <a href="about.html">About</a>
             <a href="profile.html">Profile</a>
@@ -69,76 +68,171 @@
             <a href="promote.html">Logout</a>
         </div>
         
-        <h1 style="padding-top: 1vw; padding-bottom: 4vw;">Safe from COVID</h1>
-        
     </div>
 
 </head>
 
 <body onload="document.getElementById('home-btn').className = 'active'">
 
-    <div class="main-container">
-    
-        <!-- intro -->
-        <div class = "container">
-            <div class = "jumbotron">
-                <div class = "heading">
-                    <h2 class="text-left">COVID Contact Tracing</h2>
-                    <div class = "jumbotron"></div>
+
+    <!-- Stores header content -->
+    <div class="main-box-home">
+
+        <!-- header for mobile -->
+        <div class="container" id="mobileVersion">
+
+            <div class="jumbotron" id="jumboFlex">
+                <div>
+                    <img src="largeHomeIcon.png" class="phoneBanner">
                 </div>
-                <p>This website has been created as a helpful portal during
+                <br><br>
+                <h1 style="margin: 0px;">COVID-19 Contact <br> Tracing & Info Hub</h1>
+            </div>
+            
+            <br>
+            
+            <div class="jumbotron" id="jumboHome" style="max-width: 750px;">
+                <p class="text-justify">This website has been created as a helpful portal during
                 the COVID-19 global pandemic. By making a profile (below), you can use our contact tracing
                 feature to be alerted when you come in close contact with anyone claiming to be sick or positive for COVID-19. We are open to suggestions for new features
                 and improvements.
-                </p>
+                </p>    
             </div>
-        </div>
 
-        <!-- buttons for sign in
-        {%if login == 0%} -->
-        <div class = "button_layout">
-            <button id = 'create-profile-btn' onclick='redirect("/create-profile")'>Create a Profile</button>
-            <button id = 'sign-in-btn' onclick='redirect("/sign-in")'>Sign In</button>
-        </div>
-
-        <!-- 
-        {%else%}
-        <div class = 'container'>
-            <h1 id = 'greeting'>Welcome, User</h1>
-        </div>
-        {%if auth == False%}
-        <div class = 'container'>
-        <h2>Please verify your account before using contact tracing</h2>
-        </div>
-        {%endif%}
-        {%endif%} -->
-
-    
-        <div class="container">
-        
-            <div class="alert" style="background-color: #7ed957;">
-                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-                Welcome, User
+            <div class="jumbotron" id="jumboFlex">
+                <button>Start Now</button>
+                <br><br>
+                <button>Log In</button>
             </div>
-            
-            
-            <div class = 'alert' style="background-color: #f44336; display: none;">
-                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-                Please verify your account before using contact tracing
-            </div>    
-    
-        </div>
-    
 
-        <div>
-            <footer>
-                <a id="specialTag" href="https://www.facebook.com/Safe-from-COVID-103580788051476" class="fa fa-facebook"></a>
-                <a id="specialTag" href="https://www.facebook.com/Safe-from-COVID-103580788051476" class="fa fa-envelope"></a>
-            </footer>
         </div>
+
+        <!-- header for tablet/desktop -->
+        <div class="container" id="homeVersion">
+
+            <img src="homeIcon.png" class="tabletBanner">
+            <img src="largeHomeIcon.png" class="laptopBanner">
+            
+            <div class="jumbotron">
+            
+                <div class="container">
+                    <h1 class="text-right" id="titleNormal">COVID-19 Contact Tracing <br> & Info Hub</h1>
+                </div>
+
+                <br><br>
+                
+                <div class="container" id="rightAlignContainer">
+                    <div class="jumbotron" id="jumboHome">
+                        <p class="text-justify">This website has been created as a helpful portal during
+                        the COVID-19 global pandemic. By making a profile (below), you can use our contact tracing
+                        feature to be alerted when you come in close contact with anyone claiming to be sick or positive for COVID-19. We are open to suggestions for new features
+                        and improvements.
+                        </p>    
+                    </div>
+                </div>
+
+                
+                <div class="container" id="rightAlignContainer">
+                    <div class="jumbotron" id="jumboHomeBtn">
+                        <button>Start Now</button>
+                        <button>Log In</button>
+                    </div>
+                </div> 
+                
+            </div>
     
+        </div>
+
     </div>
 
-</body>
+    <!-- Uses home.css file, manages scrollable container box -->
+    <div class="containerCards">
+    
+        <ul class="stack-cards">
+          
+            <li class="stack-cards__item" style="top: 70px;">
+                <div class="jumbotron" id="panelJumbo" style="background-color: #3f60fa;">
+                    
+                    <h2 style="margin-top: 20px;">Education</h2>
+                    <br>
+                    
+                    <div class="container">
+                        <img src="2.png" style = "width: 200px; height: 200px;"> 
+                    </div>
+                    
+                    <div class="container">
+                        <p class="text-center">Use QR-code based systems to stay safe on campus</p>
+                    </div>
 
+                </div>
+            </li>
+        
+          <li class="stack-cards__item " style="top: 130px;">
+            <div class="jumbotron" id="panelJumbo" style="background-color: #5271ff;">
+                
+                <h2 style="margin-top: 20px;">Community</h2>    
+                <br>
+                
+                <div class="container">
+                    <img src="3.png" style = "width: 200px; height: 200px;">
+                </div>
+                
+                <div class="container">
+                    <p class="text-center">Use contact-tracing to stay safe while going outside</p>
+                </div>
+            
+            </div>
+          </li>
+    
+          <li class="stack-cards__item " style="top: 240px;">
+            <div class="jumbotron" id="panelJumbo" style="background-color: #718afd;">
+                
+                <h2 style="margin-top: 20px;">Businesses</h2>
+                <br>
+                
+                <div class="container">
+                    <img src="4.png" style = "width: 200px; height: 200px;">
+                </div>
+                
+                <div class="container">
+                    <p class="text-center">Monitor the condition of employees and co-workers</p>
+                </div>
+
+            </div>
+          </li>
+
+        </ul>
+
+    </div>
+
+    <div class="spacer"></div>
+
+    <br>
+
+    <!-- alert system
+    <div class="container">
+    
+        <div class="alert" style="background-color: #7ed957;">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            Welcome, User
+        </div>
+        
+        <div class = 'alert' style="background-color: #f44336; display: none;">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            Please verify your account before using contact tracing
+        </div>    
+
+    </div>
+        -->
+        
+    <!-- footer -->
+    <div>
+        <footer>
+            <a id="specialTag" href="https://www.facebook.com/Safe-from-COVID-103580788051476" class="fa fa-facebook"></a>
+            <a id="specialTag" href="https://www.facebook.com/Safe-from-COVID-103580788051476" class="fa fa-envelope"></a>
+        </footer>
+    </div>
+    
+    
+</body>
 </html>

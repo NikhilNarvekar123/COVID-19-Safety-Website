@@ -17,15 +17,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Cabin:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel= "stylesheet" href="base.css">
-    <!-- <link rel= "stylesheet" href="{%static "css/base.css"%}"> -->
+    <link rel= "stylesheet" href="new.css">
+    <!-- <link rel= "stylesheet" href="{%static "css/new.css"%}"> -->
     <link rel= "stylesheet" href="profile-creation.css">
     <!-- <link rel= "stylesheet" href="{%static "css/profile-creation.css"%}"> -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="main.js"></script>
     <!-- <script src="{%static "js/main.js"%}"></script> -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     
     
     <title>New Profile | Safe from COVID</title>
@@ -46,30 +47,28 @@
     
     
 
-    <div class = "bck">
+    <div class="headingBanner">
         
-        <span style="font-size:30px;cursor:pointer ; color:white;" onclick="openNav()">&#9776;</span>
-        
-        <div class="topnav">    
-            <img class="top" src="smalllogo.png" style = "width: 3%; height: 3%;"/>
-            <a id = 'logout-btn' onclick = 'redirect("/logout")'>Logout</a>
-            <a id = 'tracker-nav-btn' onclick = 'redirect("/tracker")'>Tracker</a>
-            <a onclick = 'redirect("/profile")' id = 'profile-nav-btn'>Profile</a>
-            <a id = 'about-btn' onclick = 'redirect("/about")'>About</a>  
-            <a onclick = 'redirect("/home")' id = 'home-btn'>Home</a>
-        </div>
-        
-        <div id="mySidenav" class="sidenav">
-            <a id="navClose" href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-            <a href="index.html">Home</a>
-            <a href="about.html">About</a>
-            <a href="profile.html">Profile</a>
-            <a href="tracker.html">Tracker</a>
-            <a href="promote.html">Logout</a>
-        </div>
-
-        <h1 style="padding-top: 1vw; padding-bottom: 4vw;">Sign In</h1>
-        
+      <span id="menuBtn1" style="font-size:30px;cursor:pointer ; color:white;" onclick="openNav()">&#9776;</span>
+      <img class="logo" src="newLogo.png"/>
+           
+      <div class="topnav">    
+          <a id = 'logout-btn' onclick = 'redirect("/logout")'>Logout</a>
+          <a id = 'tracker-nav-btn' onclick = 'redirect("/tracker")'>Tracker</a>
+          <a onclick = 'redirect("/profile")' id = 'profile-nav-btn'>Profile</a>
+          <a id = 'about-btn' onclick = 'redirect("/about")'>About</a>  
+          <a onclick = 'redirect("/home")' id = 'home-btn'>Home</a>
+      </div>
+      
+      <div id="mySidenav" class="sidenav">
+          <a id="closeSideNavBtn" style="padding-bottom: 50px;"><span id="menuBtn2" style="font-size:30px;cursor:pointer ; color:white; display: none;" onclick="closeNav()">&#9776;</span></a>
+          <a href="index.html">Home</a>
+          <a href="about.html">About</a>
+          <a href="profile.html">Profile</a>
+          <a href="tracker.html">Tracker</a>
+          <a href="promote.html">Logout</a>
+      </div>
+      
     </div>
 
 </head>
@@ -84,21 +83,17 @@
     }
   </script>
   
-  <div class="main-container">
+  <div class="main-box">
     
-    <div class = "container">
-      <div class = "jumbotron">
-        <div class = "heading">
-            <h2 class="text-left">Log Into Your Profile</h2>
-            <div class = "jumbotron"></div>
-        </div>
-      </div>
+    <div class="container" id="headingContainer">    
+      <h1 class="text-left"><u>Log In</u></h1>
     </div>
 
-    
+    <br><br>
+
     <div class="container">
-      <div class = "jumbotron2">
-        <form name = 'input' method = 'post'>
+      <div class = "jumbotron" id="modProfileJumbo">
+        <form name = 'input' method = 'post' style="width: 70%;">
           <!-- {%csrf_token%} -->
           <p id="p2">Enter Email Address:</p>
           <input type="text" id="address" name = 'address' placeholder="Enter Email">
@@ -106,13 +101,13 @@
           <p id="p2">Enter Password:</p>
           <input type="password" id="password1" name = 'password' placeholder="Enter Password">
           <br><br>
-          <button onclick = 'document.input.submit()'> Login </button>
+          <button id="submitButton" style= "width: 100%; margin: 0vw;" onclick = 'document.input.submit()'> Login </button>
           <br><br>
-          <button style= "background-color: rgb(255, 145, 0);" href= '/password-reset'> I forgot my password</button>
+          <button style= "background-color: red; width: 100%; margin: 0vw;" href= '/password-reset'> I forgot my password</button>
       </form>
       </div>
     </div>
-        
+      
     <div>
         <footer>
             <a id="specialTag" href="https://www.facebook.com/Safe-from-COVID-103580788051476" class="fa fa-facebook"></a>
@@ -120,9 +115,7 @@
         </footer>
     </div>
 
-
   </div>
 
 </body>
-
 </html>
