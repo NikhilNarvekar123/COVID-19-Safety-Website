@@ -286,13 +286,16 @@ function insertListElem(arr, insert){
 function openNav() {
   document.getElementById("mySidenav").style.transition = "0.5s";
   document.getElementById("mySidenav").style.width = "190px";    
+  document.getElementById("menuBtn1").style.display = "none";
+  document.getElementById("menuBtn2").style.display = "block";
 }
 
 /* Closes Navbar by "x" button */
 function closeNav() {
   document.getElementById("mySidenav").style.transition = "0.5s";
   document.getElementById("mySidenav").style.width = "0";
-
+  document.getElementById("menuBtn1").style.display = "block";
+  document.getElementById("menuBtn2").style.display = "none";
 }
 
 /* Closes Navbar when window resized (and out of mobile dimensions) */
@@ -304,3 +307,23 @@ function closeNavAuto() {
 }
 
 window.onresize = closeNavAuto;
+
+
+/* Search Functionality */
+function search() {
+  var input, filter, ul, li, a, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  ul = document.getElementById("myUL");
+  li = ul.getElementsByTagName("li");
+  for (i = 0; i < li.length; i++) {
+      a = li[i].getElementsByTagName("a")[0];
+      txtValue = a.textContent || a.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+          li[i].style.display = "";
+      } else {
+          li[i].style.display = "none";
+      }
+  }
+}
+
